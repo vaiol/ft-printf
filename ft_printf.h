@@ -64,6 +64,7 @@ typedef struct	s_convers
 	t_flag 		flag;
 	t_type		type;
 	t_unsigned	an_unsigned;
+	char 		undefined;
 
 }				t_convers;
 

@@ -57,4 +57,5 @@ void			put_unsigned(t_format *form, unsigned long long number)
 	else
 		nbr = get_oxX(form, number);
 	ft_putstr(nbr);
+	free(nbr);
 }

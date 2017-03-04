@@ -5,7 +5,7 @@ static t_format	*create_form(void)
 	t_format	*form;
 
 	form = (t_format *)malloc(sizeof(t_format));
-	form->precision = 0;
+	form->precision = -1;
 	form->minimum_width = 0;
 	form->hashtag = 0;
 	form->apostrophe = 0;
@@ -14,6 +14,7 @@ static t_format	*create_form(void)
 	form->conversion.type = UNDEFINED;
 	form->conversion.flag = N;
 	form->conversion.an_unsigned = d;
+	form->conversion.undefined = '\0';
 	return (form);
 }
 
@@ -44,7 +45,7 @@ static size_t	parse_flags(const char *format, size_t i, t_format *form)
 ** parsing precision and minimum width
 */
 
-static size_t	parse_precision(const char *format, size_t i, t_format *form)
+static size_t	parse_minwidth(const char *format, size_t i, t_format *form)
 {
 	if (ft_isdigit(format[i]))
 	{
@@ -52,6 +53,12 @@ static size_t	parse_precision(const char *format, size_t i, t_format *form)
 		while (format[i] && (format[i] <= '9' && format[i] >= '0'))
 			i++;
 	}
+	return (i);
+}
+
+
+static size_t	parse_precision(const char *format, size_t i, t_format *form)
+{
 	if (format[i] && format[i] == '.')
 	{
 		i++;
@@ -65,7 +72,7 @@ static size_t	parse_precision(const char *format, size_t i, t_format *form)
 	return (i);
 }
 
-static size_t 	set_SDOUC(const char *f, size_t i, t_format *form)
+static size_t 	  set_SDOUC(const char *f, size_t i, t_format *form)
 {
 	form->conversion.flag = L;
 	if (f[i] == 'S')
@@ -137,7 +144,7 @@ static size_t	parse_conversions(const char *f, size_t i, t_format *form)
 	else if (ft_str_contains_chr("SDOUC", f[i]))
 		set_SDOUC(f, i, form);
 	else
-		return (i);
+		form->conversion.undefined = f[i];
 	return (i + 1);
 }
 
@@ -146,6 +153,8 @@ size_t		parser(const char *format, size_t i, va_list valist)
 	t_format	*form;
 
 	form = create_form();
+	i = parse_flags(format, i, form);
+	i = parse_minwidth(format, i, form);
 	i = parse_flags(format, i, form);
 	i = parse_precision(format, i, form);
 	i = parse_flags(format, i, form);

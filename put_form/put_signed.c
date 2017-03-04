@@ -24,4 +24,5 @@ void		put_signed(t_format *form, long long number)
 			nbr = ft_strjoinchr_start(' ', count, nbr);
 	}
 	ft_putstr(nbr);
+	free(nbr);
 }

@@ -13,6 +13,7 @@
 #ifndef FT_PUT_H
 # define FT_PUT_H
 
+#include "../libft/libft.h"
 # include <unistd.h>
 # include <stdlib.h>
 # include <wchar.h>

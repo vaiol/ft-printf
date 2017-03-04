@@ -27,18 +27,4 @@ size_t	ft_putstr(char const *s)
 	return (ft_write(1, s, size));
 }
 
-size_t	ft_putwstr(wchar_t *s)
-{
-	size_t printed;
-	size_t size;
 
-	if (!s)
-	{
-		ft_putstr("(null)");
-		return (0);
-	}
-	printed = 0;
-	size = 0;
-	while (s[size])
-		printed += ft_putwint(s[size++]);
-}

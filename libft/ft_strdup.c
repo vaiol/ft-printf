@@ -1,41 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astepano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/04 12:24:38 by astepano          #+#    #+#             */
-/*   Updated: 2017/02/16 20:10:56 by astepano         ###   ########.fr       */
+/*   Created: 2016/12/02 16:21:45 by astepano          #+#    #+#             */
+/*   Updated: 2016/12/14 12:11:39 by astepano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
-#include "ft_put.h"
+#include "libft.h"
 
-size_t	ft_putchar(char c)
+char	*ft_strdup(const char *s1)
 {
-	ft_write(1, &c, 1);
-}
-
-size_t	ft_putchr_count(char c, size_t count)
-{
+	char	*str;
 	size_t	i;
 
+	str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + 1));
+	if (!str)
+		return (NULL);
 	i = 0;
-	while (i < count)
+	while (s1[i])
 	{
-		ft_putchar(' ');
+		str[i] = s1[i];
 		i++;
 	}
-	return (i);
-}
-
-size_t	ft_putmem(void *memory)
-{
-	unsigned long long address;
-
-	address = memory - NULL;
-	ft_putstr("0x");
-	ft_putb(address, 16, ' ');
+	str[i] = 0;
+	return (str);
 }
