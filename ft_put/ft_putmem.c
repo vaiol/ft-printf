@@ -1,23 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   put_form.c                                         :+:      :+:    :+:   */
+/*   ft_putmem.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astepano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/04 21:27:33 by astepano          #+#    #+#             */
-/*   Updated: 2017/03/04 21:27:35 by astepano         ###   ########.fr       */
+/*   Created: 2017/03/04 21:04:50 by astepano          #+#    #+#             */
+/*   Updated: 2017/03/04 21:05:00 by astepano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "put_form.h"
+#include "ft_put.h"
 
-void	put_form(t_format *form, va_list valist)
-{
-	if (form->type == DECIMAL)
-		put_decimal(form, valist);
-	else if (form->type == STRING)
-		put_string(form, valist);
-	else if (form->type == CHAR)
-		put_char(form, valist);
-}
+//TODO putmem

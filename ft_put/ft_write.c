@@ -12,21 +12,22 @@
 
 #include "ft_put.h"
 
-size_t	ft_write(int fildes, const void *buf, size_t nbyte)
+void	ft_write(int fildes, const void *buf, size_t nbyte)
 {
-	ssize_t	printed;
-
 	if (!g_count)
 	{
 		g_count = (size_t *)malloc(sizeof(size_t));
 		*g_count = 0;
 	}
-	printed = write(fildes, buf, nbyte);
-	*g_count += printed;
-	return ((size_t)printed);
+	*g_count += write(fildes, buf, nbyte);
 }
 
 int		get_count_symbols(void)
 {
-	return ((int)*g_count);
+	int	count;
+
+	count = (int)*g_count;
+	free(g_count);
+	g_count = NULL;
+	return (count);
 }

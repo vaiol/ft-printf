@@ -1,23 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   put_form.c                                         :+:      :+:    :+:   */
+/*   ft_wchar_to_str.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astepano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/04 21:27:33 by astepano          #+#    #+#             */
-/*   Updated: 2017/03/04 21:27:35 by astepano         ###   ########.fr       */
+/*   Created: 2017/03/04 21:05:52 by astepano          #+#    #+#             */
+/*   Updated: 2017/03/04 21:05:53 by astepano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "put_form.h"
+#include "libft.h"
 
-void	put_form(t_format *form, va_list valist)
+char	*ft_wchar_to_str(wchar_t *s, int max_len)
 {
-	if (form->type == DECIMAL)
-		put_decimal(form, valist);
-	else if (form->type == STRING)
-		put_string(form, valist);
-	else if (form->type == CHAR)
-		put_char(form, valist);
+	char	*tmp;
+	char	*str;
+	size_t	size;
+
+	if (!s)
+		return (ft_strdup("(null)"));
+	size = 0;
+	str = ft_strdup("");
+	while (s[size])
+	{
+		tmp = str;
+		str = ft_strjoin(str, ft_wint_to_str(s[size]));
+		if (max_len >= 0 && ft_strlen(str) > max_len)
+		{
+			free(str);
+			str = tmp;
+			break ;
+		}
+		free(tmp);
+		size++;
+	}
+	return (str);
 }

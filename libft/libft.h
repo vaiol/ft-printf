@@ -6,7 +6,7 @@
 /*   By: astepano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/02 16:46:29 by astepano          #+#    #+#             */
-/*   Updated: 2017/01/09 16:10:20 by astepano         ###   ########.fr       */
+/*   Updated: 2017/03/04 21:09:16 by astepano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <string.h>
 # include <stdlib.h>
+# include <wchar.h>
 
 typedef struct		s_list
 {
@@ -78,10 +79,10 @@ char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strtrim(char const *s);
 char				**ft_strsplit(char const *s, char c);
 char				*ft_itoa(int n);
-//void				ft_putchar(char c);
-//void				ft_putstr(const char *s);
+void				ft_putchar(char c);
+void				ft_putstr(const char *s);
 void				ft_putendl(const char *s);
-//void				ft_putnbr(int n);
+void				ft_putnbr(int n);
 void				ft_putchar_fd(char c, int fd);
 void				ft_putstr_fd(const char *s, int fd);
 void				ft_putendl_fd(const char *s, int fd);
@@ -98,15 +99,16 @@ void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 void				ft_print_memory(const void *addr, size_t size);
 char				*ft_itoa_base(long long value, int base);
-
-int					ft_str_contains_chr(const char *str, char c);
+int					ft_strcchr(const char *str, char c);
 size_t				ft_nbrlen(char *nbr);
-size_t				ft_nbrlenu(unsigned long long nbr);
 char				*ft_strjoinchr(char const c1, char *s2);
-char 				*ft_nbrjoinchr_count(char const c1, int count, char *s2);
+char				*ft_nbrjoinchr_count(char const c1, int count, char *s2);
 char				*ft_strjoinchr_end(char const c1, int count, char *s2);
 char				*ft_strjoinchr_start(char const c1, int count, char *s2);
 char				*ft_utoa_base(unsigned long long value, int base, char size,
-								  int hash);
+									int hash);
+char				*ft_wint_to_str(wint_t wint);
+char				*ft_wchar_to_str(wchar_t *s, int max_len);
+char				*ft_strcut(char *str, int max_len);
 
 #endif

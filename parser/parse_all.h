@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   put_form.h                                         :+:      :+:    :+:   */
+/*   parse_all.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astepano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/04 21:28:10 by astepano          #+#    #+#             */
-/*   Updated: 2017/03/04 21:28:14 by astepano         ###   ########.fr       */
+/*   Created: 2017/03/04 21:14:29 by astepano          #+#    #+#             */
+/*   Updated: 2017/03/04 21:14:32 by astepano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUT_FORM_H
-# define PUT_FORM_H
-
+#ifndef PARSE_ALL_H
+# define PARSE_ALL_H
 # include "../ft_printf.h"
 
-void	put_char(t_format *form, va_list valist);
-void	put_string(t_format *form, va_list valist);
-void	put_decimal(t_format *form, va_list valist);
-void	put_unsigned(t_format *form, unsigned long long number);
-void	put_signed(t_format *form, long long number);
-char	*put_apostrophe(char *nbr);
+size_t	parse_flags(const char *format, size_t i, t_format *form);
+size_t	parse_specificator(const char *f, size_t i, t_format *form);
+size_t	parse_minwidth(const char *format, size_t i, t_format *form);
+size_t	parse_precision(const char *format, size_t i, t_format *form);
+size_t	parse_modifier(const char *f, size_t i, t_format *form);
+size_t	parser(const char *format, size_t i, va_list valist);
 
 #endif

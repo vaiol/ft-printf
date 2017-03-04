@@ -7,10 +7,7 @@ int 		ft_printf(const char *restrict format, ...)
 	va_list		valist;
 
 	if (!format)
-	{
-		write(2, "error", 5);
-		exit(1);
-	}
+		return (-1);
 	va_start(valist, format);
 	len = 0;
 	i = 0;
@@ -22,7 +19,6 @@ int 		ft_printf(const char *restrict format, ...)
 			i++;
 			if (format[i] != '%')
 				len = parser(format, i, valist);
-//				len = i + handle_conversions(format, i, valist);
 			else
 				len = i;
 		}

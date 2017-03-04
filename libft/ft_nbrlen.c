@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_nbrlen.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: astepano <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/03/04 21:07:00 by astepano          #+#    #+#             */
+/*   Updated: 2017/03/04 21:07:02 by astepano         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 size_t		ft_nbrlen(char *nbr)
@@ -9,13 +21,3 @@ size_t		ft_nbrlen(char *nbr)
 		len++;
 	return (ft_strlen(nbr + len));
 }
-
-size_t		ft_nbrlenu(unsigned long long nbr)
-{
-	size_t	len;
-
-	len = 1;
-	while (nbr /= 10)
-		len++;
-}
-

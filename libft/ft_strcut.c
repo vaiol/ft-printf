@@ -1,23 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   put_form.c                                         :+:      :+:    :+:   */
+/*   ft_strcut.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astepano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/04 21:27:33 by astepano          #+#    #+#             */
-/*   Updated: 2017/03/04 21:27:35 by astepano         ###   ########.fr       */
+/*   Created: 2017/03/04 21:06:02 by astepano          #+#    #+#             */
+/*   Updated: 2017/03/04 21:06:03 by astepano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "put_form.h"
+#include "libft.h"
 
-void	put_form(t_format *form, va_list valist)
+char	*ft_strcut(char *str, int max_len)
 {
-	if (form->type == DECIMAL)
-		put_decimal(form, valist);
-	else if (form->type == STRING)
-		put_string(form, valist);
-	else if (form->type == CHAR)
-		put_char(form, valist);
+	char	*result;
+	size_t	str_len;
+	size_t	i;
+
+	if (max_len < 0)
+		return (str);
+	str_len = ft_strlen(str);
+	if (str_len < max_len)
+		max_len = (int)str_len;
+	result = (char *)malloc(sizeof(char) * (max_len + 1));
+	i = 0;
+	while (i < max_len)
+	{
+		result[i] = str[i];
+		i++;
+	}
+	result[i] = '\0';
+	free(str);
+	return (result);
 }

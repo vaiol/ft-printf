@@ -12,19 +12,17 @@
 
 #include "ft_put.h"
 
-size_t	ft_putstr(char const *s)
+void	ft_putstr(char const *s)
 {
 	size_t size;
 
 	if (!s)
 	{
 		ft_putstr("(null)");
-		return (0);
+		return ;
 	}
 	size = 0;
 	while (s[size])
 		size++;
-	return (ft_write(1, s, size));
+	ft_write(1, s, size);
 }
-
-

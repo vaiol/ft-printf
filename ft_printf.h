@@ -14,18 +14,17 @@
 # define FT_PRINTF_H
 
 # include <stdlib.h>
-# include "ft_handlers/ft_handlers.h"
 # include "ft_put/ft_put.h"
 # include "libft/libft.h"
 
 /*
-** minimum_width: an_unsigned
-** precision	: .an_unsigned
+** minimum_width: NBR
+** precision	: .NBR
 ** hashtag		: #
 ** apostrophe	: '
 ** padding		: -0
 ** sign			: + (space)
-** flag			: hh, h, l, ll, z, j
+** modifier		: hh, h, l, ll, z, j
 ** conversion	:
 */
 
@@ -42,31 +41,11 @@ typedef enum	e_flag
 
 typedef enum	e_type
 {
-	UNDEFINED,
 	DECIMAL,
-	DOUBLE,
 	STRING,
 	CHAR,
 	POINTER
 }				t_type;
-
-typedef enum	e_unsigned
-{
-	d,
-	o,
-	u,
-	x,
-	X
-}				t_unsigned;
-
-typedef struct	s_convers
-{
-	t_flag 		flag;
-	t_type		type;
-	t_unsigned	an_unsigned;
-	char 		undefined;
-
-}				t_convers;
 
 typedef struct	s_format
 {
@@ -76,10 +55,12 @@ typedef struct	s_format
 	int			apostrophe;
 	char		padding;
 	char		sign;
-	t_convers	conversion;
+	char		null_type;
+	char		unsigned_type;
+	t_flag		modifier;
+	t_type		type;
 
 }				t_format;
-
 
 size_t			parser(const char *format, size_t i, va_list valist);
 void			put_form(t_format *form, va_list valist);
