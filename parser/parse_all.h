@@ -13,7 +13,7 @@
 #ifndef PARSE_ALL_H
 # define PARSE_ALL_H
 
-# include "../ft_printf.h"
+# include "../ft_p.h"
 
 size_t	parse_flags(const char *format, size_t i, t_format *form);
 size_t	parse_type(const char *f, size_t i, t_format *form);

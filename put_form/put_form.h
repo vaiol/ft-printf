@@ -13,7 +13,7 @@
 #ifndef PUT_FORM_H
 # define PUT_FORM_H
 
-# include "../ft_printf.h"
+# include "../ft_p.h"
 
 void	put_char(t_format *form, va_list valist);
 void	put_string(t_format *form, va_list valist);

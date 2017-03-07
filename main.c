@@ -1,4 +1,4 @@
-#include "ft_printf.h"
+#include "ft_p.h"
 #include <locale.h>
 
 #define RED   "\x1B[31m"
