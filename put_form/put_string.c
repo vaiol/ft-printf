@@ -21,7 +21,13 @@ void		put_string(t_format *form, va_list valist)
 		str = ft_strdup(
 				ft_wchar_to_str(va_arg(valist, wchar_t *), form->precision));
 	else
-		str = ft_strdup(va_arg(valist, char *));
+	{
+		str = va_arg(valist, char *);
+		if (!str)
+			str = ft_strdup("(null)");
+		else
+			str = ft_strdup(str);
+	}
 	str = ft_strcut(str, form->precision);
 	count = form->minimum_width - (int)ft_strlen(str);
 	if (count > 0)

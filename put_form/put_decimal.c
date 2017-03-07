@@ -20,9 +20,9 @@ static unsigned long long	get_unsigned(t_format *form, va_list valist)
 	if (form->size == N)
 		result = va_arg(valist, unsigned int);
 	else if (form->size == HH)
-		result = va_arg(valist, int);
+		result = (unsigned char)va_arg(valist, int);
 	else if (form->size == H)
-		result = va_arg(valist, int);
+		result = (unsigned short)va_arg(valist, int);
 	else if (form->size == L)
 		result = va_arg(valist, unsigned long);
 	else if (form->size == LL)
@@ -42,9 +42,9 @@ static long long			get_signed(t_format *form, va_list valist)
 	if (form->size == N)
 		result = va_arg(valist, int);
 	else if (form->size == HH)
-		result = va_arg(valist, int);
+		result = (char)va_arg(valist, int);
 	else if (form->size == H)
-		result = va_arg(valist, int);
+		result = (short)va_arg(valist, int);
 	else if (form->size == L)
 		result = va_arg(valist, long);
 	else if (form->size == LL)

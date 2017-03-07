@@ -31,7 +31,7 @@ void		put_char(t_format *form, va_list valist)
 		chr = ft_wint_to_str(va_arg(valist, wint_t));
 	else
 	{
-		if (form->type)
+		if (form->type == 'c')
 			chr = char_to_str(va_arg(valist, int));
 		else
 			chr = char_to_str(form->type);

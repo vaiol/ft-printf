@@ -28,11 +28,8 @@ int		ft_printf(const char *restrict format, ...)
 		if (format[i] == '%')
 		{
 			ft_write(1, format + len, i - len);
-			i++;
-			if (format[i] != '%')
-				len = parser(format, i, valist);
-			else
-				len = i;
+			len = parser(format, i + 1, valist);
+			i = len - 1;
 		}
 		i++;
 	}

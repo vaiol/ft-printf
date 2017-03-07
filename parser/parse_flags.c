@@ -20,12 +20,18 @@ size_t	parse_flags(const char *format, size_t i, t_format *form)
 			form->hashtag = 1;
 		else if (format[i] == '\'')
 			form->apostrophe = 1;
-		else if (format[i] == ' ' && form->sign != '+')
-			form->sign = ' ';
+		else if (format[i] == ' ')
+		{
+			if (form->sign != '+')
+				form->sign = ' ';
+		}
 		else if (format[i] == '+')
 			form->sign = '+';
-		else if (format[i] == '0' && form->padding != '-')
-			form->padding = '0';
+		else if (format[i] == '0')
+		{
+			if (form->padding != '-')
+				form->padding = '0';
+		}
 		else if (format[i] == '-')
 			form->padding = '-';
 		else
