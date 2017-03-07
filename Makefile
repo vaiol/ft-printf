@@ -6,12 +6,12 @@
 #    By: astepano <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/03 15:03:21 by astepano          #+#    #+#              #
-#    Updated: 2017/03/07 21:08:42 by astepano         ###   ########.fr        #
+#    Updated: 2017/03/07 21:22:54 by astepano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
-SRCS =  ft_printf.c															\
+SRCS =  ft_p.c															\
 		ft_put/ft_putstr.c ft_put/ft_write.c								\
 		libft/ft_itoa_base.c libft/ft_strcchr.c								\
 		libft/ft_strlen.c libft/ft_isdigit.c libft/ft_atoi.c				\
@@ -26,7 +26,7 @@ SRCS =  ft_printf.c															\
 		parser/parse_precision.c parser/parse_modifier.c
 
 OBJS = $(SRCS:.c=.o)
-INCLUDES = -I ft_printf.h
+INCLUDES = -I ft_p.h
 NAME = libftprintf.a
 CFLAGS = -Wall -Wextra -Werror
 
