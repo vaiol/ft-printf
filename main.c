@@ -84,12 +84,12 @@ void	test_nbr_size()
 {
 	int r1 = 0;
 	int r2 = 0;
-	long l = 9223372036854775807;
-	long long ll = -9223372036854775808;
+	long l = 9223372036854775807LL;
+	long long ll = -9223372036854775808LLU;
 	char hh = -128;
 	short h = 32767;
-	intmax_t j = 9223372036854775807;
-	ssize_t z = -9223372036854775807;
+	intmax_t j = 9223372036854775807LL;
+	ssize_t z = -9223372036854775807LL;
 	printf(CYN "-NBR-SIZE-TEST-\n" RES);
 	char *format = "123 %ld %lld %hhd %hd %jd %zd\n";
 	r1 = printf(format, l, ll, hh, h, j, z);
@@ -121,7 +121,7 @@ void	test_unsigned_size()
 	unsigned long long ll = 0;
 	unsigned char hh = -128;
 	unsigned short h = 65535;
-	uintmax_t j = 9223372036854775809;
+	uintmax_t j = 9223372036854775809LLU;
 	size_t z = -1235;
 	printf(CYN "-UNSIGNED-SIZE-TEST-\n" RES);
 	char *format = "123 %lu %llu %hhu %hu %ju %zu\n";

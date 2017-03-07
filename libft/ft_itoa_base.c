@@ -30,7 +30,7 @@ char		*ft_itoa_base(long long value, int base)
 	int			i;
 	char		*result;
 
-	if (value == -9223372036854775808L)
+	if (value == (long long)-9223372036854775808LLU)
 		return (ft_strdup("-9223372036854775808"));
 	tmp = value;
 	len = 1;

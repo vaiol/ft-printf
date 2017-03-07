@@ -15,12 +15,12 @@
 char	*ft_strcut(char *str, int max_len)
 {
 	char	*result;
-	size_t	str_len;
-	size_t	i;
+	int		str_len;
+	int		i;
 
 	if (max_len < 0)
 		return (str);
-	str_len = ft_strlen(str);
+	str_len = (int)ft_strlen(str);
 	if (str_len < max_len)
 		max_len = (int)str_len;
 	result = (char *)malloc(sizeof(char) * (max_len + 1));

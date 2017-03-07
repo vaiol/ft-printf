@@ -26,7 +26,7 @@ SRCS =  ft_printf.c                                              \
         parser/parse_precision.c parser/parse_modifier.c
 
 OBJS = $(SRCS:.c=.o)
-INCLUDES = -I ft_printf.h ft_put/ft_put.h put_form/put_form.h parser/parse_all.h
+INCLUDES = -I ft_printf.h
 NAME = libftprintf.a
 CFLAGS = -Wall -Wextra -Werror
 

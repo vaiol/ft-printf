@@ -26,7 +26,7 @@ char	*ft_wchar_to_str(wchar_t *s, int max_len)
 	{
 		tmp = str;
 		str = ft_strjoin(str, ft_wint_to_str(s[size]));
-		if (max_len >= 0 && ft_strlen(str) > max_len)
+		if (max_len >= 0 && (int)ft_strlen(str) > max_len)
 		{
 			free(str);
 			str = tmp;
