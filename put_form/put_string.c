@@ -17,7 +17,7 @@ void		put_string(t_format *form, va_list valist)
 	char	*str;
 	int		count;
 
-	if (form->modifier == L)
+	if (form->size == L)
 		str = ft_strdup(
 				ft_wchar_to_str(va_arg(valist, wchar_t *), form->precision));
 	else

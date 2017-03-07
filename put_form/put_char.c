@@ -12,23 +12,29 @@
 
 #include "put_form.h"
 
-//TODO 25 lines in putchar
+static char	*char_to_str(char c)
+{
+	char	*str;
+
+	str = (char *)malloc(sizeof(char) * 2);
+	str[0] = c;
+	str[1] = '\0';
+	return (str);
+}
 
 void		put_char(t_format *form, va_list valist)
 {
 	char	*chr;
 	int		count;
 
-	if (form->modifier == L)
+	if (form->size == L)
 		chr = ft_wint_to_str(va_arg(valist, wint_t));
 	else
 	{
-		chr = (char *)malloc(sizeof(char) * 2);
-		if (form->null_type)
-			chr[0] = form->null_type;
+		if (form->type)
+			chr = char_to_str(va_arg(valist, int));
 		else
-			chr[0] = va_arg(valist, int);
-		chr[1] = '\0';
+			chr = char_to_str(form->type);
 	}
 	count = form->minimum_width - (int)ft_strlen(chr);
 	if (count > 0)

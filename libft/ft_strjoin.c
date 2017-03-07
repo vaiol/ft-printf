@@ -12,6 +12,8 @@
 
 #include "libft.h"
 
+//TODO refactor
+
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*str;

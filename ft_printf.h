@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: astepano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/13 17:18:11 by astepano          #+#    #+#             */
-/*   Updated: 2017/02/13 17:18:13 by astepano         ###   ########.fr       */
+/*   Created: 2017/03/07 20:40:42 by astepano          #+#    #+#             */
+/*   Updated: 2017/03/07 20:40:43 by astepano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 ** conversion	:
 */
 
-typedef enum	e_flag
+typedef enum	e_size
 {
 	N,
 	HH,
@@ -37,15 +37,7 @@ typedef enum	e_flag
 	LL,
 	J,
 	Z
-}				t_flag;
-
-typedef enum	e_type
-{
-	DECIMAL,
-	STRING,
-	CHAR,
-	POINTER
-}				t_type;
+}				t_size;
 
 typedef struct	s_format
 {
@@ -55,10 +47,8 @@ typedef struct	s_format
 	int			apostrophe;
 	char		padding;
 	char		sign;
-	char		null_type;
-	char		unsigned_type;
-	t_flag		modifier;
-	t_type		type;
+	t_size		size;
+	char		type;
 
 }				t_format;
 

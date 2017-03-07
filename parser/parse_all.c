@@ -23,10 +23,8 @@ static t_format	*create_form(void)
 	form->apostrophe = 0;
 	form->padding = '\0';
 	form->sign = '\0';
-	form->type = CHAR;
-	form->modifier = N;
-	form->unsigned_type = '\0';
-	form->null_type = '\0';
+	form->type = '\0';
+	form->size = N;
 	return (form);
 }
 
@@ -41,7 +39,7 @@ size_t			parser(const char *format, size_t i, va_list valist)
 	i = parse_precision(format, i, form);
 	i = parse_flags(format, i, form);
 	i = parse_modifier(format, i, form);
-	i = parse_specificator(format, i, form);
+	i = parse_type(format, i, form);
 	put_form(form, valist);
 	return (i);
 }

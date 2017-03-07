@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: astepano <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/03/07 20:43:18 by astepano          #+#    #+#             */
+/*   Updated: 2017/03/07 20:43:25 by astepano         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-int 		ft_printf(const char *restrict format, ...)
+int		ft_printf(const char *restrict format, ...)
 {
-	size_t 		len;
-	size_t 		i;
+	size_t		len;
+	size_t		i;
 	va_list		valist;
 
 	if (!format)

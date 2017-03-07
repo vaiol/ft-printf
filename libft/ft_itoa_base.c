@@ -10,37 +10,43 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
-//TODO 25 lines
-
-char	*ft_itoa_base(long long value, int base)
+static void	aux(long long value, int b, char *result, int *i)
 {
-	char		*basement;
-	char		*result;
+	char	*base;
+
+	base = "0123456789ABCDEF";
+	if (value <= -b || b <= value)
+		aux(value / b, b, result, i);
+	result[(*i)++] = base[value % b];
+}
+
+char		*ft_itoa_base(long long value, int base)
+{
 	long long	v;
 	long long	tmp;
 	int			len;
+	int			i;
+	char		*result;
 
-	basement = "0123456789ABCDEF";
+	if (value == -9223372036854775808L)
+		return (ft_strdup("-9223372036854775808"));
+	tmp = value;
 	len = 1;
-	v = tmp = value;
 	while ((tmp /= base))
 		len++;
+	v = value;
 	if (v < 0)
 	{
-		if (base == 10)
-			len++;
+		len = base == 10 ? len + 1 : len;
 		v = -v;
 	}
 	result = (char *)malloc(sizeof(char) * (len + 1));
-	result[len] = '\0';
-	while (len--)
-	{
-		result[len] = basement[v % base];
-		v /= base;
-	}
+	i = 0;
 	if (value < 0 && base == 10)
-		result[0] = '-';
+		result[i++] = '-';
+	aux(v, base, result, &i);
+	result[i] = '\0';
 	return (result);
 }

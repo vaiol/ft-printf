@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: astepano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/16 19:43:14 by astepano          #+#    #+#             */
-/*   Updated: 2017/02/16 19:43:16 by astepano         ###   ########.fr       */
+/*   Created: 2017/03/07 20:42:41 by astepano          #+#    #+#             */
+/*   Updated: 2017/03/07 20:42:44 by astepano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-size_t	*g_count;
+size_t	g_count;
 
 int		get_count_symbols(void);
 void	ft_write(int fildes, const void *buf, size_t nbyte);

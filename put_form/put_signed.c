@@ -30,7 +30,7 @@ void		put_signed(t_format *form, long long number)
 	{
 		if (form->padding == '-')
 			nbr = ft_strjoinchr_end(' ', count, nbr);
-		else if (form->padding == '0' && !form->precision)
+		else if (form->padding == '0' && form->precision < 0)
 			nbr = ft_nbrjoinchr_count('0', count, nbr);
 		else
 			nbr = ft_strjoinchr_start(' ', count, nbr);

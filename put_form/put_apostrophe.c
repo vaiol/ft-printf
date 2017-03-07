@@ -12,33 +12,42 @@
 
 #include "put_form.h"
 
-//TODO 25 lines in apostrophe (norm)
+static char	*get_result(int len, int slen, char *result, char *nbr)
+{
+	size_t	a;
+	int		nlen;
+
+	nlen = (int)ft_nbrlen(nbr);
+	a = 0;
+	while (slen >= 0 && ++a)
+	{
+		if (a && !(a % 4) && nlen > 0)
+			result[slen--] = ',';
+		else
+		{
+			result[slen--] = nbr[len--];
+			nlen--;
+		}
+	}
+	return (result);
+}
 
 char		*put_apostrophe(char *nbr)
 {
 	char	*result;
-	size_t	a;
 	int		len;
+	int		slen;
 	int		nlen;
-	int		sl;
 
-	if (!nbr && !(a = 0))
+	if (!nbr)
 		return (NULL);
-	len = (int)ft_strlen(nbr);
 	nlen = (int)ft_nbrlen(nbr);
-	result = (char *)malloc(sizeof(char) * ((sl = len + ((nlen - 1) / 3)) + 1));
-	result[sl--] = '\0';
+	len = (int)ft_strlen(nbr);
+	slen = len + ((nlen - 1) / 3);
+	result = (char *)malloc(sizeof(char) * (slen + 1));
+	result[slen--] = '\0';
 	len--;
-	while (sl >= 0 && ++a)
-	{
-		if (a && !(a % 4) && nlen > 0)
-			result[sl--] = ',';
-		else
-		{
-			result[sl--] = nbr[len--];
-			nlen--;
-		}
-	}
+	result = get_result(len, slen, result, nbr);
 	free(nbr);
 	return (result);
 }

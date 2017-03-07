@@ -17,21 +17,21 @@ size_t	parse_modifier(const char *f, size_t i, t_format *form)
 	if (f[i] == 'h')
 	{
 		if (f[i + 1] == 'h' && i++)
-			form->modifier = HH;
+			form->size = HH;
 		else
-			form->modifier = H;
+			form->size = H;
 	}
 	else if (f[i] == 'l')
 	{
 		if (f[i + 1] == 'l' && i++)
-			form->modifier = LL;
+			form->size = LL;
 		else
-			form->modifier = L;
+			form->size = L;
 	}
 	else if (f[i] == 'j')
-		form->modifier = J;
+		form->size = J;
 	else if (f[i] == 'z')
-		form->modifier = Z;
+		form->size = Z;
 	else
 		return (i);
 	return (i + 1);
