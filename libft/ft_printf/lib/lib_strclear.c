@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lib_putstr.c                                       :+:      :+:    :+:   */
+/*   lib_strclear.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astepano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/08 21:15:43 by astepano          #+#    #+#             */
-/*   Updated: 2017/03/08 21:15:44 by astepano         ###   ########.fr       */
+/*   Created: 2017/03/08 21:15:53 by astepano          #+#    #+#             */
+/*   Updated: 2017/03/08 21:16:40 by astepano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lib.h"
 
-void	putstr(char const *s)
+char	*strclear(char *str)
 {
-	size_t size;
-
-	size = 0;
-	while (s[size])
-		size++;
-	ft_write(1, s, size);
+	free(str);
+	return (ft_strdup(""));
 }

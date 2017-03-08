@@ -21,5 +21,7 @@ void	put_decimal(t_format *form, va_list valist);
 void	put_unsigned(t_format *form, unsigned long long number);
 void	put_signed(t_format *form, long long number);
 void	put_memory(t_format *form, va_list valist);
+char	*ft_xxjoinchr_start(char const c1, int count, char *s2, int hash);
+char	*add_padding(t_format *form, char *nbr, int count, int hash);
 
 #endif

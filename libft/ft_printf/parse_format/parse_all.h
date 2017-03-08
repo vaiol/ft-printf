@@ -19,7 +19,7 @@ size_t	parse_flags(const char *format, size_t i, t_format *form);
 size_t	parse_type(const char *f, size_t i, t_format *form);
 size_t	parse_minwidth(const char *format, size_t i, t_format *form);
 size_t	parse_precision(const char *format, size_t i, t_format *form);
-size_t	parse_modifier(const char *f, size_t i, t_format *form);
+size_t	parse_size(const char *f, size_t i, t_format *form);
 size_t	parse(const char *format, size_t i, va_list valist);
 
 #endif

@@ -54,6 +54,5 @@ typedef struct	s_format
 
 size_t			parse(const char *format, size_t i, va_list valist);
 void			put_form(t_format *form, va_list valist);
-int				ft_printf(const char *restrict format, ...);
 
 #endif

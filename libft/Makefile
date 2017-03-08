@@ -6,7 +6,7 @@
 #    By: astepano <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/03 15:03:21 by astepano          #+#    #+#              #
-#    Updated: 2017/03/08 18:36:33 by astepano         ###   ########.fr        #
+#    Updated: 2017/03/08 20:25:18 by astepano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,11 +22,11 @@ PRINTF_SRCS = $(PRINTF)ft_printf.c $(LIB)putstr.c $(LIB)write.c \
            $(LIB)strjoinchr.c $(LIB)utoa_base.c \
 		   $(LIB)strjoinchr_end.c $(LIB)strjoinchr_start.c $(LIB)wint_to_str.c \
 		   $(LIB)nbrjoinchr_count.c $(LIB)nbrlen.c $(LIB)wchar_to_str.c \
-		   $(LIB)get_apostrophe.c \
+		   $(LIB)get_apostrophe.c $(LIB)strclear.c \
 		   $(PUT)decimal.c $(PUT)unsigned.c $(PUT)signed.c $(PUT)format.c \
 		   $(PUT)string.c $(PUT)char.c $(PUT)memory.c \
 		   $(PARSE)all.c  $(PARSE)flags.c $(PARSE)type.c $(PARSE)minwidth.c \
-		   $(PARSE)precision.c $(PARSE)modifier.c
+		   $(PARSE)precision.c $(PARSE)size.c
 SRCS = $(LIB_SRCS) $(PRINTF_SRCS)
 
 LIB_OBJS = $(LIB_SRCS:.c=.o)

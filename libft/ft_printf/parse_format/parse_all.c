@@ -41,7 +41,7 @@ size_t			parse(const char *format, size_t i, va_list valist)
 		i = parse_flags(format, i, form);
 		i = parse_minwidth(format, i, form);
 		i = parse_precision(format, i, form);
-		i = parse_modifier(format, i, form);
+		i = parse_size(format, i, form);
 	}
 	if (format[i])
 	{

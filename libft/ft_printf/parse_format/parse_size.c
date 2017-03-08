@@ -1,37 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_modifier.c                                   :+:      :+:    :+:   */
+/*   parse_size.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astepano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/04 21:14:56 by astepano          #+#    #+#             */
-/*   Updated: 2017/03/04 21:14:57 by astepano         ###   ########.fr       */
+/*   Created: 2017/03/08 21:17:06 by astepano          #+#    #+#             */
+/*   Updated: 2017/03/08 21:17:07 by astepano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse_all.h"
 
-size_t	parse_modifier(const char *f, size_t i, t_format *form)
+static void	set_size(t_format *form, t_size new)
+{
+	if (form->size >= new)
+		return ;
+	form->size = new;
+}
+
+size_t		parse_size(const char *f, size_t i, t_format *form)
 {
 	if (f[i] == 'h')
 	{
 		if (f[i + 1] == 'h' && i++)
-			form->size = HH;
+			set_size(form, HH);
 		else
-			form->size = H;
+			set_size(form, H);
 	}
 	else if (f[i] == 'l')
 	{
 		if (f[i + 1] == 'l' && i++)
-			form->size = LL;
+			set_size(form, LL);
 		else
-			form->size = L;
+			set_size(form, L);
 	}
 	else if (f[i] == 'j')
-		form->size = J;
+		set_size(form, J);
 	else if (f[i] == 'z')
-		form->size = Z;
+		set_size(form, Z);
 	else
 		return (i);
 	return (i + 1);

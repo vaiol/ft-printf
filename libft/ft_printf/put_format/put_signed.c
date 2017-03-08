@@ -26,7 +26,7 @@ void		put_signed(t_format *form, long long number)
 	if (count > 0)
 		nbr = ft_nbrjoinchr_count('0', count, nbr);
 	if (!form->precision && !number)
-		nbr = ft_strdup("");
+		nbr = strclear(nbr);
 	count = form->minimum_width - (int)ft_strlen(nbr);
 	if (count > 0)
 	{
@@ -37,6 +37,6 @@ void		put_signed(t_format *form, long long number)
 		else
 			nbr = ft_strjoinchr_start(' ', count, nbr);
 	}
-	lib_putstr(nbr);
+	putstr(nbr);
 	free(nbr);
 }

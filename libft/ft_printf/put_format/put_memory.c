@@ -12,7 +12,7 @@
 
 #include "put_format.h"
 
-static char	*ft_xxjoinchr_start(char const c1, int count, char *s2, int hash)
+char		*ft_xxjoinchr_start(char const c1, int count, char *s2, int hash)
 {
 	char	*str;
 	size_t	i;
@@ -39,7 +39,7 @@ static char	*ft_xxjoinchr_start(char const c1, int count, char *s2, int hash)
 	return (str);
 }
 
-static char	*add_padding(t_format *form, char *nbr, int count, int hash)
+char		*add_padding(t_format *form, char *nbr, int count, int hash)
 {
 	if (form->padding == '-')
 		nbr = ft_strjoinchr_end(' ', count, nbr);
@@ -78,6 +78,6 @@ void		put_memory(t_format *form, va_list valist)
 	form->type = 'x';
 	form->hashtag = 1;
 	str = get_xx(form, memory, form->hashtag);
-	lib_putstr(str);
+	putstr(str);
 	free(str);
 }

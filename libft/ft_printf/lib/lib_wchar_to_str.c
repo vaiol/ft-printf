@@ -12,8 +12,9 @@
 
 #include "lib.h"
 
-char	*ft_wchar_to_str(wchar_t *s, int max_len)
+char	*wchartostr(wchar_t *s, int max_len)
 {
+	char	*wint_tmp;
 	char	*tmp;
 	char	*str;
 	size_t	size;
@@ -25,7 +26,9 @@ char	*ft_wchar_to_str(wchar_t *s, int max_len)
 	while (s[size])
 	{
 		tmp = str;
-		str = ft_strjoin(str, ft_wint_to_str(s[size]));
+		wint_tmp = ft_wint_to_str(s[size]);
+		str = ft_strjoin(str, wint_tmp);
+		free(wint_tmp);
 		if (max_len >= 0 && (int)ft_strlen(str) > max_len)
 		{
 			free(str);
