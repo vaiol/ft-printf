@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "put_form.h"
+#include "put_format.h"
 
 void		put_signed(t_format *form, long long number)
 {
@@ -21,7 +21,7 @@ void		put_signed(t_format *form, long long number)
 	if (form->sign && number >= 0)
 		nbr = ft_strjoinchr(form->sign, nbr);
 	if (form->apostrophe)
-		nbr = get_apostrophe(nbr);
+		nbr = lib_get_apostrophe(nbr);
 	count = form->precision - (int)ft_nbrlen(nbr);
 	if (count > 0)
 		nbr = ft_nbrjoinchr_count('0', count, nbr);

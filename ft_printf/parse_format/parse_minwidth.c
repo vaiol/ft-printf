@@ -17,7 +17,7 @@ size_t	parse_minwidth(const char *format, size_t i, t_format *form)
 	if (ft_isdigit(format[i]))
 	{
 		form->minimum_width = ft_atoi(format + i);
-		while (format[i] && (format[i] <= '9' && format[i] >= '0'))
+		while (ft_isdigit(format[i]))
 			i++;
 	}
 	return (i);

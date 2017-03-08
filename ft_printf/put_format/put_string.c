@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "put_form.h"
+#include "put_format.h"
 
 void		put_string(t_format *form, va_list valist)
 {

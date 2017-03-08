@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "put_form.h"
+#include "put_format.h"
 
 //TODO refactor
 
@@ -41,6 +41,17 @@ static char	*ft_xxjoinchr_start(char const c1, int count, char *s2, int hash)
 	return (str);
 }
 
+static char	*add_padding(t_format *form, char *nbr, int count, int hash)
+{
+	if (form->padding == '-')
+		nbr = ft_strjoinchr_end(' ', count, nbr);
+	else if (form->padding == '0' && form->precision < 0)
+		nbr = ft_xxjoinchr_start('0', count, nbr, hash);
+	else
+		nbr = ft_strjoinchr_start(' ', count, nbr);
+	return (nbr);
+}
+
 static char	*get_xx(t_format *form, unsigned long long number, int hash)
 {
 	int		count;
@@ -56,27 +67,11 @@ static char	*get_xx(t_format *form, unsigned long long number, int hash)
 		nbr = ft_strdup("");
 	count = form->minimum_width - (int)ft_strlen(nbr);
 	if (count > 0)
-	{
-		if (form->padding == '-')
-			nbr = ft_strjoinchr_end(' ', count, nbr);
-		else if (form->padding == '0' && form->precision < 0)
-			nbr = ft_xxjoinchr_start('0', count, nbr, hash);
-		else
-			nbr = ft_strjoinchr_start(' ', count, nbr);
-	}
+		nbr = add_padding(form, nbr, count, hash);
 	return (nbr);
 }
 
-static char	*add_padding(t_format *form, char *nbr, int count)
-{
-	if (form->padding == '-')
-		nbr = ft_strjoinchr_end(' ', count, nbr);
-	else if (form->padding == '0' && form->precision < 0)
-		nbr = ft_strjoinchr_start('0', count, nbr);
-	else
-		nbr = ft_strjoinchr_start(' ', count, nbr);
-	return (nbr);
-}
+
 
 static char	*get_o(t_format *form, unsigned long long number, int hash)
 {
@@ -85,7 +80,7 @@ static char	*get_o(t_format *form, unsigned long long number, int hash)
 
 	nbr = ft_utoa_base(number, 8, 'x', hash);
 	if (form->apostrophe)
-		nbr = get_apostrophe(nbr);
+		nbr = lib_get_apostrophe(nbr);
 	count = form->precision - (int)ft_strlen(nbr);
 	if (count > 0)
 		nbr = ft_strjoinchr_start('0', count, nbr);
@@ -93,7 +88,7 @@ static char	*get_o(t_format *form, unsigned long long number, int hash)
 		nbr = ft_strdup("");
 	count = form->minimum_width - (int)ft_strlen(nbr);
 	if (count > 0)
-		nbr = add_padding(form, nbr, count);
+		nbr = add_padding(form, nbr, count, 0);
 	return (nbr);
 }
 
@@ -104,7 +99,7 @@ static char	*get_u(t_format *form, unsigned long long number, int hash)
 
 	nbr = ft_utoa_base(number, 10, ' ', hash);
 	if (form->apostrophe)
-		nbr = get_apostrophe(nbr);
+		nbr = lib_get_apostrophe(nbr);
 	count = form->precision - (int)ft_nbrlen(nbr);
 	if (count > 0)
 		nbr = ft_nbrjoinchr_count('0', count, nbr);
@@ -112,11 +107,9 @@ static char	*get_u(t_format *form, unsigned long long number, int hash)
 		nbr = ft_strdup("");
 	count = form->minimum_width - (int)ft_strlen(nbr);
 	if (count > 0)
-		nbr = add_padding(form, nbr, count);
+		nbr = add_padding(form, nbr, count, 0);
 	return (nbr);
 }
-
-
 
 void		put_unsigned(t_format *form, unsigned long long number)
 {

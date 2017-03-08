@@ -12,16 +12,6 @@
 
 #include "put_form.h"
 
-static void	put_memory(t_format *form, va_list valist)
-{
-	unsigned long long	memory;
-
-	memory = (unsigned long long)va_arg(valist, void *);
-	form->type = 'x';
-	form->hashtag = 1;
-	put_unsigned(form, memory);
-}
-
 void		put_form(t_format *form, va_list valist)
 {
 	if (ft_strcchr("diouxX", form->type))

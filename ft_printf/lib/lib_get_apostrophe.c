@@ -20,7 +20,7 @@ static char	*apostrophe_result(int len, int slen, char *result, char *nbr)
 	return (result);
 }
 
-char		*get_apostrophe(char *nbr)
+char		*lib_get_apostrophe(char *nbr)
 {
 	char	*result;
 	int		len;

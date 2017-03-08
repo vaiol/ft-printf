@@ -16,6 +16,8 @@ char	*ft_strjoinchr_end(char const c1, int count, char *s2);
 char	*ft_strjoinchr_start(char const c1, int count, char *s2);
 char	*ft_wint_to_str(wint_t wint);
 char	*ft_wchar_to_str(wchar_t *s, int max_len);
-char	*get_apostrophe(char *nbr);
+char	*lib_get_apostrophe(char *nbr);
+void	lib_putstr(const char *s);
+char	*lib_get_apostrophe(char *nbr);
 
 #endif

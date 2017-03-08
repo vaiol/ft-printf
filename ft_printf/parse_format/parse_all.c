@@ -30,16 +30,24 @@ static t_format	*create_form(void)
 
 size_t			parse(const char *format, size_t i, va_list valist)
 {
+	size_t		tmp;
 	t_format	*form;
 
 	form = create_form();
-	i = parse_flags(format, i, form);
-	i = parse_minwidth(format, i, form);
-	i = parse_flags(format, i, form);
-	i = parse_precision(format, i, form);
-	i = parse_flags(format, i, form);
-	i = parse_modifier(format, i, form);
-	i = parse_type(format, i, form);
-	put_form(form, valist);
+	tmp = 0;
+	while (format[i] && tmp != i)
+	{
+		tmp = i;
+		i = parse_flags(format, i, form);
+		i = parse_minwidth(format, i, form);
+		i = parse_precision(format, i, form);
+		i = parse_modifier(format, i, form);
+	}
+	if (format[i])
+	{
+		i = parse_type(format, i, form);
+		put_form(form, valist);
+	}
+	free(form);
 	return (i);
 }
