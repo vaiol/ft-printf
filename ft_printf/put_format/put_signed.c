@@ -21,7 +21,7 @@ void		put_signed(t_format *form, long long number)
 	if (form->sign && number >= 0)
 		nbr = ft_strjoinchr(form->sign, nbr);
 	if (form->apostrophe)
-		nbr = put_apostrophe(nbr);
+		nbr = get_apostrophe(nbr);
 	count = form->precision - (int)ft_nbrlen(nbr);
 	if (count > 0)
 		nbr = ft_nbrjoinchr_count('0', count, nbr);
@@ -37,6 +37,6 @@ void		put_signed(t_format *form, long long number)
 		else
 			nbr = ft_strjoinchr_start(' ', count, nbr);
 	}
-	ft_putstr(nbr);
+	lib_putstr(nbr);
 	free(nbr);
 }

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "lib.h"
 
 static char	*ft_utoa_puthash(char *result, int hash, char size, int b)
 {

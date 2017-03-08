@@ -6,34 +6,51 @@
 #    By: astepano <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/03 15:03:21 by astepano          #+#    #+#              #
-#    Updated: 2017/03/07 21:22:54 by astepano         ###   ########.fr        #
+#    Updated: 2017/03/08 16:00:57 by astepano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
-SRCS =  ft_p.c															\
-		ft_put/ft_putstr.c ft_put/ft_write.c								\
-		libft/ft_itoa_base.c libft/ft_strcchr.c								\
-		libft/ft_strlen.c libft/ft_isdigit.c libft/ft_atoi.c				\
-		libft/ft_strjoin.c libft/ft_nbrlen.c libft/ft_strdup.c				\
-		libft/ft_wint_to_str.c libft/ft_wchar_to_str.c libft/ft_strcut.c	\
-		libft/ft_utoa_base.c libft/ft_tolower.c								\
-		put_form/put_decimal.c put_form/put_unsigned.c						\
-		put_form/put_signed.c put_form/put_form.c put_form/put_string.c		\
-		put_form/put_char.c put_form/put_apostrophe.c						\
-		parser/parse_all.c  parser/parse_flags.c							\
-		parser/parse_type.c parser/parse_minwidth.c							\
-		parser/parse_precision.c parser/parse_modifier.c
+PRINTF = ft_printf/
+LIB = $(PRINTF)lib/lib_
+PUT = $(PRINTF)put_format/put_
+PARSE = $(PRINTF)parse_format/parse_
 
+LIB_SRCS = ft_itoa_base.c ft_strcchr.c	ft_strlen.c ft_isdigit.c ft_atoi.c \
+		   ft_strjoin.c ft_strdup.c ft_strcut.c ft_tolower.c
+PRINTF_SRCS = $(PRINTF)ft_printf.c $(LIB)putstr.c $(LIB)write.c \
+           $(LIB)strjoinchr.c $(LIB)utoa_base.c \
+		   $(LIB)strjoinchr_end.c $(LIB)strjoinchr_start.c $(LIB)wint_to_str.c \
+		   $(LIB)nbrjoinchr_count.c $(LIB)nbrlen.c $(LIB)wchar_to_str.c \
+		   $(LIB)get_apostrophe.c \
+		   $(PUT)decimal.c $(PUT)unsigned.c $(PUT)signed.c $(PUT)form.c \
+		   $(PUT)string.c $(PUT)char.c \
+		   $(PARSE)all.c  $(PARSE)flags.c $(PARSE)type.c $(PARSE)minwidth.c \
+		   $(PARSE)precision.c $(PARSE)modifier.c
+SRCS = $(LIB_SRCS) $(PRINTF_SRCS)
+
+LIB_OBJS = $(LIB_SRCS:.c=.o)
+PRINTF_OBJS = $(PRINTF_SRCS:.c=.o)
 OBJS = $(SRCS:.c=.o)
-INCLUDES = -I ft_p.h
+
+INCLUDES = -I $(PRINTF)ft_printf.h
+
+LIB_NAME = libft.a
+PRINTF_NAME = printf.a
 NAME = libftprintf.a
+
 CFLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	ar rc $(NAME) $(OBJS)
+
+$(PRINTF_NAME): $(PRINTF_OBJS)
+	ar rc $(PRINTF_NAME) $(PRINTF_OBJS)
+
+$(LIB_NAME): $(LIB_OBJS)
+	ar rc $(LIB_NAME) $(LIB_OBJS)
 
 .c.o:
 	$(CC) $(CFLAGS) $(INCLUDES) -c $<  -o $@
@@ -42,6 +59,6 @@ clean:
 	rm -f $(OBJS)
 
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(NAME) $(LIB_NAME) $(PRINTF_NAME)
 
 re: fclean all

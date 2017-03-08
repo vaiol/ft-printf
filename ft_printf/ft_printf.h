@@ -6,7 +6,7 @@
 /*   By: astepano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/07 20:40:42 by astepano          #+#    #+#             */
-/*   Updated: 2017/03/07 20:40:43 by astepano         ###   ########.fr       */
+/*   Updated: 2017/03/08 16:24:21 by astepano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 
 # include <stdarg.h>
 # include <stdlib.h>
-# include "ft_put/ft_put.h"
-# include "libft/libft.h"
+# include "lib/lib.h"
 
 /*
 ** minimum_width: NBR
@@ -53,7 +52,7 @@ typedef struct	s_format
 
 }				t_format;
 
-size_t			parser(const char *format, size_t i, va_list valist);
+size_t			parse(const char *format, size_t i, va_list valist);
 void			put_form(t_format *form, va_list valist);
 int				ft_printf(const char *restrict format, ...);
 

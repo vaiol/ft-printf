@@ -1,28 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_wchar_to_str.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astepano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/04 13:33:01 by astepano          #+#    #+#             */
-/*   Updated: 2016/12/04 13:33:03 by astepano         ###   ########.fr       */
+/*   Created: 2017/03/04 21:05:52 by astepano          #+#    #+#             */
+/*   Updated: 2017/03/04 21:05:53 by astepano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_put.h"
+#include "lib.h"
 
-void	ft_putstr(char const *s)
+char	*ft_wchar_to_str(wchar_t *s, int max_len)
 {
-	size_t size;
+	char	*tmp;
+	char	*str;
+	size_t	size;
 
 	if (!s)
-	{
-		ft_putstr("(null)");
-		return ;
-	}
+		return (ft_strdup("(null)"));
 	size = 0;
+	str = ft_strdup("");
 	while (s[size])
+	{
+		tmp = str;
+		str = ft_strjoin(str, ft_wint_to_str(s[size]));
+		if (max_len >= 0 && (int)ft_strlen(str) > max_len)
+		{
+			free(str);
+			str = tmp;
+			break ;
+		}
+		free(tmp);
 		size++;
-	ft_write(1, s, size);
+	}
+	return (str);
 }

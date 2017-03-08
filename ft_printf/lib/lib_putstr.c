@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_write.c                                         :+:      :+:    :+:   */
+/*   lib_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astepano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/16 20:11:41 by astepano          #+#    #+#             */
-/*   Updated: 2017/02/16 20:11:43 by astepano         ###   ########.fr       */
+/*   Created: 2016/12/04 13:33:01 by astepano          #+#    #+#             */
+/*   Updated: 2016/12/04 13:33:03 by astepano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_put.h"
+#include "lib.h"
 
-void	ft_write(int fildes, const void *buf, size_t nbyte)
+void	lib_putstr(char const *s)
 {
-	g_count += write(fildes, buf, nbyte);
-}
+	size_t size;
 
-int		get_count_symbols(void)
-{
-	int	count;
-
-	count = (int)g_count;
-	g_count = 0;
-	return (count);
+	size = 0;
+	while (s[size])
+		size++;
+	ft_write(1, s, size);
 }

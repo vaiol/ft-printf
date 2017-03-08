@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_nbrlen.c                                        :+:      :+:    :+:   */
+/*   ft_write.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astepano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/04 21:07:00 by astepano          #+#    #+#             */
-/*   Updated: 2017/03/04 21:07:02 by astepano         ###   ########.fr       */
+/*   Created: 2017/02/16 20:11:41 by astepano          #+#    #+#             */
+/*   Updated: 2017/02/16 20:11:43 by astepano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "lib.h"
 
-size_t		ft_nbrlen(char *nbr)
+void	ft_write(int fildes, const void *buf, size_t nbyte)
 {
-	size_t	len;
+	g_count += write(fildes, buf, nbyte);
+}
 
-	len = 0;
-	while (nbr[len] && (nbr[len] > '9' || nbr[len] < '0'))
-		len++;
-	return (ft_strlen(nbr + len));
+int		get_count_symbols(void)
+{
+	int	count;
+
+	count = (int)g_count;
+	g_count = 0;
+	return (count);
 }

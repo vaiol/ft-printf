@@ -85,7 +85,7 @@ static char	*get_o(t_format *form, unsigned long long number, int hash)
 
 	nbr = ft_utoa_base(number, 8, 'x', hash);
 	if (form->apostrophe)
-		nbr = put_apostrophe(nbr);
+		nbr = get_apostrophe(nbr);
 	count = form->precision - (int)ft_strlen(nbr);
 	if (count > 0)
 		nbr = ft_strjoinchr_start('0', count, nbr);
@@ -104,7 +104,7 @@ static char	*get_u(t_format *form, unsigned long long number, int hash)
 
 	nbr = ft_utoa_base(number, 10, ' ', hash);
 	if (form->apostrophe)
-		nbr = put_apostrophe(nbr);
+		nbr = get_apostrophe(nbr);
 	count = form->precision - (int)ft_nbrlen(nbr);
 	if (count > 0)
 		nbr = ft_nbrjoinchr_count('0', count, nbr);
@@ -134,6 +134,6 @@ void		put_unsigned(t_format *form, unsigned long long number)
 		nbr = get_o(form, number, hash);
 	else if (ft_strcchr("xX", form->type))
 		nbr = get_xx(form, number, hash);
-	ft_putstr(nbr);
+	lib_putstr(nbr);
 	free(nbr);
 }

@@ -1,39 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_wchar_to_str.c                                  :+:      :+:    :+:   */
+/*   put_format.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astepano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/04 21:05:52 by astepano          #+#    #+#             */
-/*   Updated: 2017/03/04 21:05:53 by astepano         ###   ########.fr       */
+/*   Created: 2017/03/07 20:41:13 by astepano          #+#    #+#             */
+/*   Updated: 2017/03/07 20:41:14 by astepano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef PUT_FORM_H
+# define PUT_FORM_H
 
-char	*ft_wchar_to_str(wchar_t *s, int max_len)
-{
-	char	*tmp;
-	char	*str;
-	size_t	size;
+# include "../ft_printf.h"
 
-	if (!s)
-		return (ft_strdup("(null)"));
-	size = 0;
-	str = ft_strdup("");
-	while (s[size])
-	{
-		tmp = str;
-		str = ft_strjoin(str, ft_wint_to_str(s[size]));
-		if (max_len >= 0 && (int)ft_strlen(str) > max_len)
-		{
-			free(str);
-			str = tmp;
-			break ;
-		}
-		free(tmp);
-		size++;
-	}
-	return (str);
-}
+void	put_char(t_format *form, va_list valist);
+void	put_string(t_format *form, va_list valist);
+void	put_decimal(t_format *form, va_list valist);
+void	put_unsigned(t_format *form, unsigned long long number);
+void	put_signed(t_format *form, long long number);
+char	*get_apostrophe(char *nbr);
+
+#endif

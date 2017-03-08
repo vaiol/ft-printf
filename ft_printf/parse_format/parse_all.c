@@ -28,7 +28,7 @@ static t_format	*create_form(void)
 	return (form);
 }
 
-size_t			parser(const char *format, size_t i, va_list valist)
+size_t			parse(const char *format, size_t i, va_list valist)
 {
 	t_format	*form;
 

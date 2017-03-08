@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "lib.h"
 
 static char	*ft_createwint(wint_t wint, int len)
 {

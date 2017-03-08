@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_p.h"
+#include "ft_printf.h"
 
 int		ft_printf(const char *restrict format, ...)
 {
@@ -28,7 +28,7 @@ int		ft_printf(const char *restrict format, ...)
 		if (format[i] == '%')
 		{
 			ft_write(1, format + len, i - len);
-			len = parser(format, i + 1, valist);
+			len = parse(format, i + 1, valist);
 			i = len - 1;
 		}
 		i++;

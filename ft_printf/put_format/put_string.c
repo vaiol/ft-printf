@@ -18,8 +18,7 @@ void		put_string(t_format *form, va_list valist)
 	int		count;
 
 	if (form->size == L)
-		str = ft_strdup(
-				ft_wchar_to_str(va_arg(valist, wchar_t *), form->precision));
+		str = ft_strdup(ft_wchar_to_str(va_arg(valist, wchar_t *), form->precision));
 	else
 	{
 		str = va_arg(valist, char *);
@@ -39,6 +38,6 @@ void		put_string(t_format *form, va_list valist)
 		else
 			str = ft_strjoinchr_start(' ', count, str);
 	}
-	ft_putstr(str);
+	lib_putstr(str);
 	free(str);
 }
