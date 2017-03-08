@@ -25,6 +25,8 @@ void		put_signed(t_format *form, long long number)
 	count = form->precision - (int)ft_nbrlen(nbr);
 	if (count > 0)
 		nbr = ft_nbrjoinchr_count('0', count, nbr);
+	if (!form->precision && !number)
+		nbr = ft_strdup("");
 	count = form->minimum_width - (int)ft_strlen(nbr);
 	if (count > 0)
 	{

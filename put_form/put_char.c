@@ -12,40 +12,31 @@
 
 #include "put_form.h"
 
-static char	*char_to_str(char c)
-{
-	char	*str;
-
-	str = (char *)malloc(sizeof(char) * 2);
-	str[0] = c;
-	str[1] = '\0';
-	return (str);
-}
-
 void		put_char(t_format *form, va_list valist)
 {
-	char	*chr;
+	int		char_len;
 	int		count;
+	char	chr;
 
-	if (form->size == L)
-		chr = ft_wint_to_str(va_arg(valist, wint_t));
+	char_len = 1;
+	if (form->type != 'c')
+		chr = form->type;
+	else if (form->size == L)
+		chr = (char)va_arg(valist, wint_t);
 	else
-	{
-		if (form->type == 'c')
-			chr = char_to_str(va_arg(valist, int));
-		else
-			chr = char_to_str(form->type);
-	}
-	count = form->minimum_width - (int)ft_strlen(chr);
+		chr = va_arg(valist, int);
+	count = form->minimum_width - char_len;
 	if (count > 0)
 	{
 		if (form->padding == '-')
-			chr = ft_strjoinchr_end(' ', count, chr);
-		else if (form->padding == '0')
-			chr = ft_strjoinchr_start('0', count, chr);
-		else
-			chr = ft_strjoinchr_start(' ', count, chr);
+			ft_write(1, &chr, (size_t)char_len--);
+		while (count--)
+		{
+			if (form->padding == '0')
+				ft_write(1, "0", 1);
+			else
+				ft_write(1, " ", 1);
+		}
 	}
-	ft_putstr(chr);
-	free(chr);
+	ft_write(1, &chr, (size_t)char_len);
 }

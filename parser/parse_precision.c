@@ -17,6 +17,7 @@ size_t	parse_precision(const char *format, size_t i, t_format *form)
 	if (format[i] && format[i] == '.')
 	{
 		i++;
+		form->precision = 0;
 		if (ft_isdigit(format[i]))
 		{
 			form->precision = ft_atoi(format + i);
