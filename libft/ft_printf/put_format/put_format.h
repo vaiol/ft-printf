@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   put_format.h                                         :+:      :+:    :+:   */
+/*   put_format.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astepano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/07 20:41:13 by astepano          #+#    #+#             */
-/*   Updated: 2017/03/07 20:41:14 by astepano         ###   ########.fr       */
+/*   Created: 2017/03/08 19:28:21 by astepano          #+#    #+#             */
+/*   Updated: 2017/03/08 19:29:24 by astepano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUT_FORM_H
-# define PUT_FORM_H
+#ifndef PUT_FORMAT_H
+# define PUT_FORMAT_H
 
 # include "../ft_printf.h"
 

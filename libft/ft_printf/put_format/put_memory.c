@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   put_memory.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: astepano <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/03/08 19:28:43 by astepano          #+#    #+#             */
+/*   Updated: 2017/03/08 19:30:03 by astepano         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "put_format.h"
 
 static char	*ft_xxjoinchr_start(char const c1, int count, char *s2, int hash)
@@ -59,7 +71,7 @@ static char	*get_xx(t_format *form, unsigned long long number, int hash)
 
 void		put_memory(t_format *form, va_list valist)
 {
-	char 				*str;
+	char				*str;
 	unsigned long long	memory;
 
 	memory = (unsigned long long)va_arg(valist, void *);
