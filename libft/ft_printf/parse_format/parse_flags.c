@@ -17,7 +17,7 @@ size_t	parse_flags(const char *format, size_t i, t_format *form)
 	while (format[i])
 	{
 		if (format[i] == '#')
-			form->hashtag = 1;
+			form->hashtag = 2;
 		else if (format[i] == '\'')
 			form->apostrophe = 1;
 		else if (format[i] == ' ')

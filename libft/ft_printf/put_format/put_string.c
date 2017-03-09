@@ -15,7 +15,6 @@
 void		put_string(t_format *form, va_list valist)
 {
 	char	*str;
-	int		count;
 
 	if (form->size == L)
 		str = wchartostr(va_arg(valist, wchar_t *), form->precision);
@@ -27,16 +26,7 @@ void		put_string(t_format *form, va_list valist)
 			str = ft_strdup(str);
 	}
 	str = ft_strcut(str, form->precision);
-	count = form->minimum_width - (int)ft_strlen(str);
-	if (count > 0)
-	{
-		if (form->padding == '-')
-			str = ft_strjoinchr_end(' ', count, str);
-		else if (form->padding == '0')
-			str = ft_strjoinchr_start('0', count, str);
-		else
-			str = ft_strjoinchr_start(' ', count, str);
-	}
+	str = handle_minwidth(form, str, 0);
 	putstr(str);
 	free(str);
 }

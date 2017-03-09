@@ -14,58 +14,27 @@
 
 static char	*get_xx(t_format *form, unsigned long long number, int hash)
 {
-	int		count;
 	char	*nbr;
 
 	nbr = ft_utoa_base(number, 16, form->type, hash);
-	count = form->precision - (int)ft_strlen(nbr);
-	if (hash)
-		count += 2;
-	if (count > 0)
-		nbr = ft_xxjoinchr_start('0', count, nbr, hash);
+	nbr = handle_precision(form, nbr, hash, (size_t)hash);
 	if (!form->precision)
 		nbr = strclear(nbr);
-	count = form->minimum_width - (int)ft_strlen(nbr);
-	if (count > 0)
-		nbr = add_padding(form, nbr, count, hash);
+	nbr = handle_minwidth(form, nbr, (size_t)hash);
 	return (nbr);
 }
 
-static char	*get_o(t_format *form, unsigned long long number, int hash)
+static char	*get_o(t_format *form, unsigned long long number, int hash, int base)
 {
-	int		count;
 	char	*nbr;
 
-	nbr = ft_utoa_base(number, 8, 'x', hash);
+	nbr = ft_utoa_base(number, base, form->type, hash);
 	if (form->apostrophe)
 		nbr = lib_get_apostrophe(nbr);
-	count = form->precision - (int)ft_strlen(nbr);
-	if (count > 0)
-		nbr = ft_strjoinchr_start('0', count, nbr);
+	nbr = handle_precision(form, nbr, 0, 0);
 	if (!form->precision && !form->hashtag)
 		nbr = strclear(nbr);
-	count = form->minimum_width - (int)ft_strlen(nbr);
-	if (count > 0)
-		nbr = add_padding(form, nbr, count, 0);
-	return (nbr);
-}
-
-static char	*get_u(t_format *form, unsigned long long number, int hash)
-{
-	int		count;
-	char	*nbr;
-
-	nbr = ft_utoa_base(number, 10, ' ', hash);
-	if (form->apostrophe)
-		nbr = lib_get_apostrophe(nbr);
-	count = form->precision - (int)ft_nbrlen(nbr);
-	if (count > 0)
-		nbr = ft_nbrjoinchr_count('0', count, nbr);
-	if (!form->precision && !form->hashtag)
-		nbr = strclear(nbr);
-	count = form->minimum_width - (int)ft_strlen(nbr);
-	if (count > 0)
-		nbr = add_padding(form, nbr, count, 0);
+	nbr = handle_minwidth(form, nbr, 0);
 	return (nbr);
 }
 
@@ -80,9 +49,9 @@ void		put_unsigned(t_format *form, unsigned long long number)
 	else
 		hash = form->hashtag;
 	if (form->type == 'u')
-		nbr = get_u(form, number, hash);
+		nbr = get_o(form, number, hash, 10);
 	else if (form->type == 'o')
-		nbr = get_o(form, number, hash);
+		nbr = get_o(form, number, hash, 8);
 	else if (ft_strcchr("xX", form->type))
 		nbr = get_xx(form, number, hash);
 	putstr(nbr);

@@ -1,35 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lib_strjoinchr.c                                   :+:      :+:    :+:   */
+/*   lib_strjoinchr_start.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astepano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/08 19:26:03 by astepano          #+#    #+#             */
-/*   Updated: 2017/03/08 19:26:04 by astepano         ###   ########.fr       */
+/*   Created: 2017/03/08 19:26:33 by astepano          #+#    #+#             */
+/*   Updated: 2017/03/08 19:26:34 by astepano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lib.h"
 
-char	*ft_strjoinchr(char const c1, char *s2)
+char	*strjoinchr(char *str, char const chr, int count, t_position position)
 {
-	char	*str;
+	char	*result;
 	size_t	i;
+	size_t	j;
 
-	if (!s2)
-		return (0);
-	str = (char *)malloc(sizeof(char) * (ft_strlen(s2) + 2));
 	if (!str)
 		return (0);
-	i = 0;
-	str[i] = c1;
-	while (s2[i])
+	result = (char *)malloc(sizeof(char) * (ft_strlen(str) + count + 1));
+	if (!result)
+		return (0);
+	j = 0;
+	if (position == BEGIN)
 	{
-		str[i + 1] = s2[i];
-		i++;
+		while ((count--) > 0)
+			result[j++] = chr;
 	}
-	str[i + 1] = '\0';
-	free(s2);
-	return (str);
+	i = 0;
+	while (str[i])
+		result[j++] = str[i++];
+	while ((count--) > 0)
+		result[j++] = chr;
+	result[j] = '\0';
+	free(str);
+	return (result);
 }

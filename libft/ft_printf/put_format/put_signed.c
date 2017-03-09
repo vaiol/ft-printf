@@ -14,29 +14,19 @@
 
 void		put_signed(t_format *form, long long number)
 {
-	int		count;
+	size_t	margin;
 	char	*nbr;
 
+	margin = (size_t)(form->sign || number < 0);
 	nbr = ft_itoa_base(number, 10);
 	if (form->sign && number >= 0)
-		nbr = ft_strjoinchr(form->sign, nbr);
+		nbr = strjoinchr(nbr, form->sign, 1, BEGIN);
 	if (form->apostrophe)
 		nbr = lib_get_apostrophe(nbr);
-	count = form->precision - (int)ft_nbrlen(nbr);
-	if (count > 0)
-		nbr = ft_nbrjoinchr_count('0', count, nbr);
+	nbr = handle_precision(form, nbr, (int)margin * -1, margin);
 	if (!form->precision && !number)
 		nbr = strclear(nbr);
-	count = form->minimum_width - (int)ft_strlen(nbr);
-	if (count > 0)
-	{
-		if (form->padding == '-')
-			nbr = ft_strjoinchr_end(' ', count, nbr);
-		else if (form->padding == '0' && form->precision < 0)
-			nbr = ft_nbrjoinchr_count('0', count, nbr);
-		else
-			nbr = ft_strjoinchr_start(' ', count, nbr);
-	}
+	nbr = handle_minwidth(form, nbr, margin);
 	putstr(nbr);
 	free(nbr);
 }

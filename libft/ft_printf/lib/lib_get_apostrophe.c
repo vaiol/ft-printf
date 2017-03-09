@@ -12,7 +12,17 @@
 
 #include "lib.h"
 
-static char	*apostrophe_result(int len, int slen, char *result, char *nbr)
+static size_t	ft_nbrlen(char *nbr)
+{
+	size_t	len;
+
+	len = 0;
+	while (nbr[len] && (nbr[len] > '9' || nbr[len] < '0'))
+		len++;
+	return (ft_strlen(nbr + len));
+}
+
+static char		*apostrophe_result(int len, int slen, char *result, char *nbr)
 {
 	size_t	a;
 	int		nlen;
@@ -32,7 +42,7 @@ static char	*apostrophe_result(int len, int slen, char *result, char *nbr)
 	return (result);
 }
 
-char		*lib_get_apostrophe(char *nbr)
+char			*lib_get_apostrophe(char *nbr)
 {
 	char	*result;
 	int		len;
