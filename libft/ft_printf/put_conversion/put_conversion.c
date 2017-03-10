@@ -66,6 +66,8 @@ void						put_conversion(t_conversion *conv, va_list valist)
 		put_unsigned(conv, get_unsigned(conv, valist));
 	else if (conv->type == 'p')
 		put_memory(conv, valist);
+	else if (conv->type == 'n')
+		put_printed(conv, valist);
 	else
 		put_char(conv, valist);
 }
