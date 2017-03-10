@@ -52,7 +52,7 @@ typedef struct	s_format
 
 }				t_format;
 
-size_t			parse(const char *format, size_t i, va_list valist);
+size_t			parse(const char *f, size_t i, va_list valist);
 void			put_form(t_format *form, va_list valist);
 
 #endif

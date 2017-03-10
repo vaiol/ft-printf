@@ -16,4 +16,3 @@ char		*handle_minwidth(t_format *form, char *str, size_t margin)
 	}
 	return (str);
 }
-

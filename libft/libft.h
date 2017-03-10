@@ -27,5 +27,6 @@ char		*ft_strjoin(char const *s1, char const *s2);
 char		*ft_itoa_base(long long value, int base);
 int			ft_strcchr(const char *str, char c);
 char		*ft_strcut(char *str, int max_len);
+int			ft_printf(const char *restrict format, ...);
 
 #endif

@@ -12,21 +12,21 @@
 
 #include "parse_all.h"
 
-size_t	parse_flags(const char *format, size_t i, t_format *form)
+size_t	parse_flags(const char *f, size_t i, t_format *form)
 {
-	while (format[i])
+	while (f[i])
 	{
-		if (format[i] == '#')
+		if (f[i] == '#')
 			form->hashtag = 2;
-		else if (format[i] == '\'')
+		else if (f[i] == '\'')
 			form->apostrophe = 1;
-		else if (format[i] == ' ')
+		else if (f[i] == ' ')
 			form->sign = form->sign == '+' ? form->sign : (char)' ';
-		else if (format[i] == '+')
+		else if (f[i] == '+')
 			form->sign = '+';
-		else if (format[i] == '0')
+		else if (f[i] == '0')
 			form->padding = form->padding == '-' ? form->padding : (char)'0';
-		else if (format[i] == '-')
+		else if (f[i] == '-')
 			form->padding = '-';
 		else
 			break ;

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lib_get_apostrophe.c                               :+:      :+:    :+:   */
+/*   handle_apostrophe.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astepano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lib.h"
+#include "handle.h"
 
 static size_t	ft_nbrlen(char *nbr)
 {
@@ -42,7 +42,7 @@ static char		*apostrophe_result(int len, int slen, char *result, char *nbr)
 	return (result);
 }
 
-char			*lib_get_apostrophe(char *nbr)
+char			*handle_apostrophe(char *nbr)
 {
 	char	*result;
 	int		len;

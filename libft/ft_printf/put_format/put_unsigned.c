@@ -30,7 +30,7 @@ static char	*get_o(t_format *form, unsigned long long number, int hash, int base
 
 	nbr = ft_utoa_base(number, base, form->type, hash);
 	if (form->apostrophe)
-		nbr = lib_get_apostrophe(nbr);
+		nbr = handle_apostrophe(nbr);
 	nbr = handle_precision(form, nbr, 0, 0);
 	if (!form->precision && !form->hashtag)
 		nbr = strclear(nbr);

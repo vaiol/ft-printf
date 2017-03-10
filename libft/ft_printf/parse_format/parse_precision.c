@@ -12,18 +12,24 @@
 
 #include "parse_all.h"
 
-size_t	parse_precision(const char *format, size_t i, t_format *form)
+size_t	parse_precision(const char *f, size_t i, t_format *form, va_list v)
 {
-	if (format[i] == '.')
+	if (f[i] == '.')
 	{
 		i++;
 		form->precision = 0;
-		if (ft_isdigit(format[i]))
+		if (ft_isdigit(f[i]))
 		{
-			form->precision = ft_atoi(format + i);
-			while (ft_isdigit(format[i]))
+			form->precision = ft_atoi(f + i);
+			while (ft_isdigit(f[i]))
 				i++;
 		}
+		else if (f[i] == '*')
+		{
+			form->precision = va_arg(v, int);
+			i++;
+		}
+
 	}
 	return (i);
 }

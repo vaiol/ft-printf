@@ -22,7 +22,8 @@ void		put_memory(t_format *form, va_list valist)
 	form->hashtag = 2;
 	str = ft_utoa_base(memory, 16, form->type, form->hashtag);
 	str = handle_precision(form, str, form->hashtag, (size_t)form->hashtag);
-	str = ft_strcut(str, 2);
+	if (!form->precision)
+		str = ft_strcut(str, 2);
 	str = handle_minwidth(form, str, (size_t) form->hashtag);
 	putstr(str);
 	free(str);

@@ -22,8 +22,8 @@ void		put_signed(t_format *form, long long number)
 	if (form->sign && number >= 0)
 		nbr = strjoinchr(nbr, form->sign, 1, BEGIN);
 	if (form->apostrophe)
-		nbr = lib_get_apostrophe(nbr);
-	nbr = handle_precision(form, nbr, (int)margin * -1, margin);
+		nbr = handle_apostrophe(nbr);
+	nbr = handle_precision(form, nbr, (int)margin, margin);
 	if (!form->precision && !number)
 		nbr = strclear(nbr);
 	nbr = handle_minwidth(form, nbr, margin);

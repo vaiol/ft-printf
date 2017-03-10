@@ -26,6 +26,7 @@ void		put_string(t_format *form, va_list valist)
 			str = ft_strdup(str);
 	}
 	str = ft_strcut(str, form->precision);
+	form->precision = -1;
 	str = handle_minwidth(form, str, 0);
 	putstr(str);
 	free(str);

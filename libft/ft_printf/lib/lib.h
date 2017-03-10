@@ -31,9 +31,8 @@ char	*strjoinchr(char *str, char const chr, int count, t_position position);
 char	*strjoinchr_begin(char *str, char const chr, int count, size_t margin);
 char	*ft_wint_to_str(wint_t wint);
 char	*wchartostr(wchar_t *s, int max_len);
-char	*lib_get_apostrophe(char *nbr);
+char	*handle_apostrophe(char *nbr);
 void	putstr(const char *s);
-char	*lib_get_apostrophe(char *nbr);
 char	*strclear(char *str);
 
 #endif

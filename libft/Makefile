@@ -23,12 +23,12 @@ PRINTF_SRCS = $(PRINTF)ft_printf.c $(LIB)lib_putstr.c $(LIB)lib_write.c \
            $(LIB)lib_utoa_base.c \
 		   $(LIB)strjoinchr_begin.c $(LIB)strjoinchr.c $(LIB)lib_wint_to_str.c \
 		   $(LIB)lib_wchar_to_str.c \
-		   $(LIB)lib_get_apostrophe.c $(LIB)lib_strclear.c \
+		   $(LIB)lib_strclear.c \
 		   $(PUT)decimal.c $(PUT)unsigned.c $(PUT)signed.c $(PUT)format.c \
 		   $(PUT)string.c $(PUT)char.c $(PUT)memory.c \
 		   $(PARSE)all.c  $(PARSE)flags.c $(PARSE)type.c $(PARSE)minwidth.c \
 		   $(PARSE)precision.c $(PARSE)size.c \
-		   $(HANDLE)minwidth.c $(HANDLE)precision.c
+		   $(HANDLE)minwidth.c $(HANDLE)precision.c $(HANDLE)apostrophe.c
 SRCS = $(LIB_SRCS) $(PRINTF_SRCS)
 
 LIB_OBJS = $(LIB_SRCS:.c=.o)
