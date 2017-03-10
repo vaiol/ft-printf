@@ -6,7 +6,7 @@
 /*   By: astepano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/04 21:14:20 by astepano          #+#    #+#             */
-/*   Updated: 2017/03/04 21:14:22 by astepano         ###   ########.fr       */
+/*   Updated: 2017/03/10 17:29:12 by astepano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ static t_conversion	*create_form(void)
 	return (form);
 }
 
-size_t			parse(const char *f, size_t i, va_list valist)
+size_t				parse(const char *f, size_t i, va_list valist)
 {
-	size_t		tmp;
+	size_t			tmp;
 	t_conversion	*form;
 
 	form = create_form();
