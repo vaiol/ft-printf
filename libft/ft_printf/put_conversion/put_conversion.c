@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   put_conversion.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: astepano <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/03/10 17:32:53 by astepano          #+#    #+#             */
+/*   Updated: 2017/03/10 17:33:39 by astepano         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "put_conversion.h"
 
 static unsigned long long	get_unsigned(t_conversion *conv, va_list valist)
@@ -44,7 +56,7 @@ static long long			get_signed(t_conversion *conv, va_list valist)
 	return (result);
 }
 
-void		put_form(t_conversion *conv, va_list valist)
+void						put_form(t_conversion *conv, va_list valist)
 {
 	if (conv->type == 's')
 		put_string(conv, valist);

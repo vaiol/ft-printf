@@ -6,7 +6,7 @@
 /*   By: astepano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 19:28:43 by astepano          #+#    #+#             */
-/*   Updated: 2017/03/08 19:30:03 by astepano         ###   ########.fr       */
+/*   Updated: 2017/03/10 17:31:58 by astepano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ void	put_memory(t_conversion *conv, va_list valist)
 	str = handle_precision(conv, str, conv->hashtag, (size_t)conv->hashtag);
 	if (!conv->precision && !memory)
 		str = ft_strcut(str, 2);
-	str = handle_minwidth(conv, str, (size_t) conv->hashtag);
+	str = handle_minwidth(conv, str, (size_t)conv->hashtag);
 	putstr(str);
 	free(str);
 }
-

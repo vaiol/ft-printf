@@ -1,5 +1,17 @@
-#ifndef PUT_FORMAT_H
-# define PUT_FORMAT_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   put_conversion.h                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: astepano <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/03/10 17:32:17 by astepano          #+#    #+#             */
+/*   Updated: 2017/03/10 17:32:31 by astepano         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef PUT_CONVERSION_H
+# define PUT_CONVERSION_H
 
 # include "handle/handle.h"
 
