@@ -10,35 +10,35 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "put_format.h"
+#include "put_conversion.h"
 
-static char	*get_xx(t_format *form, unsigned long long number, int hash)
+static char	*get_xx(t_conversion *conv, unsigned long long nbr, int hash)
 {
-	char	*nbr;
+	char	*str;
 
-	nbr = ft_utoa_base(number, 16, form->type, hash);
-	nbr = handle_precision(form, nbr, hash, (size_t)hash);
-	if (!form->precision)
-		nbr = strclear(nbr);
-	nbr = handle_minwidth(form, nbr, (size_t)hash);
-	return (nbr);
+	str = utoa_base(nbr, 16, conv->type, hash);
+	str = handle_precision(conv, str, hash, (size_t)hash);
+	if (!conv->precision && !nbr)
+		str = strclear(str);
+	str = handle_minwidth(conv, str, (size_t)hash);
+	return (str);
 }
 
-static char	*get_o(t_format *form, unsigned long long number, int hash, int base)
+static char	*get_ou(t_conversion *conv, unsigned long long nbr, int h, int base)
 {
-	char	*nbr;
+	char	*str;
 
-	nbr = ft_utoa_base(number, base, form->type, hash);
-	if (form->apostrophe)
-		nbr = handle_apostrophe(nbr);
-	nbr = handle_precision(form, nbr, 0, 0);
-	if (!form->precision && !form->hashtag)
-		nbr = strclear(nbr);
-	nbr = handle_minwidth(form, nbr, 0);
-	return (nbr);
+	str = utoa_base(nbr, base, conv->type, h);
+	if (conv->apostrophe)
+		str = handle_apostrophe(str);
+	str = handle_precision(conv, str, 0, 0);
+	if (!conv->precision && !conv->hashtag)
+		str = strclear(str);
+	str = handle_minwidth(conv, str, 0);
+	return (str);
 }
 
-void		put_unsigned(t_format *form, unsigned long long number)
+void		put_unsigned(t_conversion *conv, unsigned long long number)
 {
 	char	*nbr;
 	int		hash;
@@ -47,13 +47,13 @@ void		put_unsigned(t_format *form, unsigned long long number)
 	if (number == 0)
 		hash = 0;
 	else
-		hash = form->hashtag;
-	if (form->type == 'u')
-		nbr = get_o(form, number, hash, 10);
-	else if (form->type == 'o')
-		nbr = get_o(form, number, hash, 8);
-	else if (ft_strcchr("xX", form->type))
-		nbr = get_xx(form, number, hash);
+		hash = conv->hashtag;
+	if (conv->type == 'u')
+		nbr = get_ou(conv, number, hash, 10);
+	else if (conv->type == 'o')
+		nbr = get_ou(conv, number, hash, 8);
+	else if (ft_strcchr("xX", conv->type))
+		nbr = get_xx(conv, number, hash);
 	putstr(nbr);
 	free(nbr);
 }

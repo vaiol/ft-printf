@@ -12,11 +12,11 @@
 
 #include "parse_all.h"
 
-static t_format	*create_form(void)
+static t_conversion	*create_form(void)
 {
-	t_format	*form;
+	t_conversion	*form;
 
-	form = (t_format *)malloc(sizeof(t_format));
+	form = (t_conversion *)malloc(sizeof(t_conversion));
 	form->precision = -1;
 	form->minimum_width = 0;
 	form->hashtag = 0;
@@ -31,7 +31,7 @@ static t_format	*create_form(void)
 size_t			parse(const char *f, size_t i, va_list valist)
 {
 	size_t		tmp;
-	t_format	*form;
+	t_conversion	*form;
 
 	form = create_form();
 	tmp = 0;

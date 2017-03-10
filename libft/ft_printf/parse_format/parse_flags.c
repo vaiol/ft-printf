@@ -12,7 +12,7 @@
 
 #include "parse_all.h"
 
-size_t	parse_flags(const char *f, size_t i, t_format *form)
+size_t	parse_flags(const char *f, size_t i, t_conversion *form)
 {
 	while (f[i])
 	{

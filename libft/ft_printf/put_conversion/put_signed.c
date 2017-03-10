@@ -10,23 +10,23 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "put_format.h"
+#include "put_conversion.h"
 
-void		put_signed(t_format *form, long long number)
+void		put_signed(t_conversion *conv, long long number)
 {
 	size_t	margin;
 	char	*nbr;
 
-	margin = (size_t)(form->sign || number < 0);
+	margin = (size_t)(conv->sign || number < 0);
 	nbr = ft_itoa_base(number, 10);
-	if (form->sign && number >= 0)
-		nbr = strjoinchr(nbr, form->sign, 1, BEGIN);
-	if (form->apostrophe)
+	if (conv->sign && number >= 0)
+		nbr = strjoinchr(nbr, conv->sign, 1, BEGIN);
+	if (conv->apostrophe)
 		nbr = handle_apostrophe(nbr);
-	nbr = handle_precision(form, nbr, (int)margin, margin);
-	if (!form->precision && !number)
+	nbr = handle_precision(conv, nbr, (int)margin, margin);
+	if (!conv->precision && !number)
 		nbr = strclear(nbr);
-	nbr = handle_minwidth(form, nbr, margin);
+	nbr = handle_minwidth(conv, nbr, margin);
 	putstr(nbr);
 	free(nbr);
 }

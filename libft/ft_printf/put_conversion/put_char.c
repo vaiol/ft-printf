@@ -10,29 +10,29 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "put_format.h"
+#include "put_conversion.h"
 
-void		put_char(t_format *form, va_list valist)
+void		put_char(t_conversion *conv, va_list valist)
 {
 	int		char_len;
 	int		count;
 	char	chr;
 
 	char_len = 1;
-	if (form->type != 'c')
-		chr = form->type;
-	else if (form->size == L)
+	if (conv->type != 'c')
+		chr = conv->type;
+	else if (conv->size == L)
 		chr = (char)va_arg(valist, wint_t);
 	else
 		chr = va_arg(valist, int);
-	count = form->minimum_width - char_len;
+	count = conv->minimum_width - char_len;
 	if (count > 0)
 	{
-		if (form->padding == '-')
+		if (conv->padding == '-')
 			ft_write(1, &chr, (size_t)char_len--);
 		while (count--)
 		{
-			if (form->padding == '0')
+			if (conv->padding == '0')
 				ft_write(1, "0", 1);
 			else
 				ft_write(1, " ", 1);

@@ -15,7 +15,8 @@
 
 # include <stdarg.h>
 # include <stdlib.h>
-# include "lib/lib.h"
+# include "../libft.h"
+# include "put_conversion/put/put.h"
 
 /*
 ** minimum_width: NBR
@@ -39,7 +40,7 @@ typedef enum	e_size
 	Z
 }				t_size;
 
-typedef struct	s_format
+typedef struct	s_conversion
 {
 	int			minimum_width;
 	int			precision;
@@ -50,9 +51,9 @@ typedef struct	s_format
 	t_size		size;
 	char		type;
 
-}				t_format;
+}				t_conversion;
 
 size_t			parse(const char *f, size_t i, va_list valist);
-void			put_form(t_format *form, va_list valist);
+void			put_form(t_conversion *conv, va_list valist);
 
 #endif

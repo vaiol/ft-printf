@@ -10,21 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "put_format.h"
+#include "put_conversion.h"
 
-void		put_memory(t_format *form, va_list valist)
+void	put_memory(t_conversion *conv, va_list valist)
 {
 	char				*str;
 	unsigned long long	memory;
 
 	memory = (unsigned long long)va_arg(valist, void *);
-	form->type = 'x';
-	form->hashtag = 2;
-	str = ft_utoa_base(memory, 16, form->type, form->hashtag);
-	str = handle_precision(form, str, form->hashtag, (size_t)form->hashtag);
-	if (!form->precision)
+	conv->type = 'x';
+	conv->hashtag = 2;
+	str = utoa_base(memory, 16, conv->type, conv->hashtag);
+	str = handle_precision(conv, str, conv->hashtag, (size_t)conv->hashtag);
+	if (!conv->precision && !memory)
 		str = ft_strcut(str, 2);
-	str = handle_minwidth(form, str, (size_t) form->hashtag);
+	str = handle_minwidth(conv, str, (size_t) conv->hashtag);
 	putstr(str);
 	free(str);
 }
+

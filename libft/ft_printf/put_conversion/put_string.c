@@ -1,25 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   put_format.c                                       :+:      :+:    :+:   */
+/*   put_string.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astepano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/08 19:28:31 by astepano          #+#    #+#             */
-/*   Updated: 2017/03/08 19:28:33 by astepano         ###   ########.fr       */
+/*   Created: 2017/03/04 21:28:29 by astepano          #+#    #+#             */
+/*   Updated: 2017/03/04 21:28:31 by astepano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "put_format.h"
+#include "put_conversion.h"
 
-void		put_form(t_format *form, va_list valist)
+void		put_string(t_conversion *conv, va_list valist)
 {
-	if (ft_strcchr("diouxX", form->type))
-		put_decimal(form, valist);
-	else if (form->type == 's')
-		put_string(form, valist);
-	else if (form->type == 'p')
-		put_memory(form, valist);
+	char	*str;
+
+	if (conv->size == L)
+		str = wstrtostr(va_arg(valist, wchar_t *), conv->precision);
 	else
-		put_char(form, valist);
+	{
+		if (!(str = va_arg(valist, char *)))
+			str = ft_strdup("(null)");
+		else
+			str = ft_strdup(str);
+	}
+	str = ft_strcut(str, conv->precision);
+	conv->precision = -1;
+	str = handle_minwidth(conv, str, 0);
+	putstr(str);
+	free(str);
 }

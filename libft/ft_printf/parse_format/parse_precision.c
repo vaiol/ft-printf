@@ -12,7 +12,7 @@
 
 #include "parse_all.h"
 
-size_t	parse_precision(const char *f, size_t i, t_format *form, va_list v)
+size_t	parse_precision(const char *f, size_t i, t_conversion *form, va_list v)
 {
 	if (f[i] == '.')
 	{
@@ -29,7 +29,6 @@ size_t	parse_precision(const char *f, size_t i, t_format *form, va_list v)
 			form->precision = va_arg(v, int);
 			i++;
 		}
-
 	}
 	return (i);
 }

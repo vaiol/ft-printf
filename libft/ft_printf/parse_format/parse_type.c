@@ -12,7 +12,7 @@
 
 #include "parse_all.h"
 
-size_t		parse_type(const char *f, size_t i, t_format *form)
+size_t		parse_type(const char *f, size_t i, t_conversion *form)
 {
 	if (ft_strcchr("SDOUC", f[i]))
 	{

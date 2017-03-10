@@ -12,14 +12,14 @@
 
 #include "parse_all.h"
 
-static void	set_size(t_format *form, t_size new)
+static void	set_size(t_conversion *form, t_size new)
 {
 	if (form->size >= new)
 		return ;
 	form->size = new;
 }
 
-size_t		parse_size(const char *f, size_t i, t_format *form)
+size_t		parse_size(const char *f, size_t i, t_conversion *form)
 {
 	if (f[i] == 'h')
 	{

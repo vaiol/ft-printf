@@ -35,5 +35,5 @@ int		ft_printf(const char *restrict format, ...)
 	}
 	ft_write(1, format + len, i - len);
 	va_end(valist);
-	return (get_count_symbols());
+	return (printed_count());
 }
