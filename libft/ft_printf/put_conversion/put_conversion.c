@@ -56,7 +56,7 @@ static long long			get_signed(t_conversion *conv, va_list valist)
 	return (result);
 }
 
-void						put_form(t_conversion *conv, va_list valist)
+void						put_conversion(t_conversion *conv, va_list valist)
 {
 	if (conv->type == 's')
 		put_string(conv, valist);

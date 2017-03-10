@@ -46,7 +46,7 @@ size_t				parse(const char *f, size_t i, va_list valist)
 	if (f[i])
 	{
 		i = parse_type(f, i, form);
-		put_form(form, valist);
+		put_conversion(form, valist);
 	}
 	free(form);
 	return (i);
