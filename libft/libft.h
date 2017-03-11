@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include <wchar.h>
 
+void		*ft_memcpy(void *restrict dst, const void *restrict src, size_t n);
 size_t		ft_strlen(const char *s);
 char		*ft_strdup(const char *s1);
 int			ft_atoi(const char *str);
