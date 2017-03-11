@@ -143,7 +143,12 @@ char	*handle_float(double nbr, int precision)
 	char	*e_buffer;
 	int		e_count;
 	int 	i;
-
+	int j;
+	if(nbr < 0)
+	{
+		nbr = -nbr;
+		j = 0;
+	}
 	exponent = ft_abs((int)nbr);
 	e_count = nbrlen(exponent);
 	e_buffer = malloc(sizeof(char) * (e_count + (++precision) + 2));
@@ -155,5 +160,7 @@ char	*handle_float(double nbr, int precision)
 	ft_round(e_buffer, e_count + precision + i - 1);
 	precision = precision == 1 ? 0 : precision;
 	e_buffer[e_count + precision + i - 1] = '\0';
+	if(j == 0)
+		e_buffer = ft_strjoin("-", e_buffer);
 	return (e_buffer);
 }
