@@ -17,6 +17,8 @@ int		nbrlen(int nbr)
 
 #define K 6
 
+double ft_pow(double base, double ex);
+
 double nth_root(double A, int n)
 {
 	int 	k;
