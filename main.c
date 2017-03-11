@@ -31,7 +31,7 @@ int main(void)
 //	r2 = ft_printf("%#.3X\n", 1);
 //	r1 == r2 ? printf(GRN "OK\n" RESET) : ft_printf(RED "NEOK: %d %d" RESET, r1, r2);
 
-	double f = -42.42;
+	double f = -2147483648;
 	printf("%f\n", f);
 
 	printf("%s\n", handle_float(f, 6));

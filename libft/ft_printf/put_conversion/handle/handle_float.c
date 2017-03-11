@@ -96,14 +96,14 @@ void	put_fraction(char *e_buffer, int index, int precision, double nbr)
 	double	exponent;
 	int		valueFloat;
 
-	exponent = (double)abs((int)nbr);
+	exponent = (double)((int)nbr);
 	if(precision > 0)
 	{
 		e_buffer[index++] = '.';
 		i = 1;
 		while (i <= precision)
 		{
-			valueFloat = (int)((nbr - exponent) * ft_pow(10.0, i));
+			valueFloat = ft_abs((int)((nbr - exponent) * ft_pow(10.0, i)));
 			e_buffer[index] = (char)(((valueFloat) % 10) + 48);
 			index++;
 			i++;
@@ -143,14 +143,10 @@ char	*handle_float(double nbr, int precision)
 	char	*e_buffer;
 	int		e_count;
 	int 	i;
-	int j;
-	if(nbr < 0)
-	{
-		nbr = -nbr;
-		j = 0;
-	}
-	exponent = ft_abs((int)nbr);
+
+	exponent = (int)nbr;
 	e_count = nbrlen(exponent);
+	precision = nbr < 0 ? precision + 1 : precision;
 	e_buffer = malloc(sizeof(char) * (e_count + (++precision) + 2));
 	i = put_exponent(e_buffer, exponent);
 	put_fraction(e_buffer, i, precision, nbr);
@@ -160,7 +156,5 @@ char	*handle_float(double nbr, int precision)
 	ft_round(e_buffer, e_count + precision + i - 1);
 	precision = precision == 1 ? 0 : precision;
 	e_buffer[e_count + precision + i - 1] = '\0';
-	if(j == 0)
-		e_buffer = ft_strjoin("-", e_buffer);
 	return (e_buffer);
 }
