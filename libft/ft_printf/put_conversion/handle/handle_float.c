@@ -1,6 +1,6 @@
 # include "handle.h"
 
-int		nbrlen(int nbr)
+int		nbrlen(long long nbr)
 {
 	int len;
 
@@ -55,14 +55,14 @@ double ft_pow(double base, double ex)
 		return base * ft_pow(base, ex - 1);
 }
 
-int 	ft_abs(int nbr)
+long long 	ft_abs(long long nbr)
 {
 	if (nbr < 0)
 		return (-nbr);
 	return (nbr);
 }
 
-int		put_exponent(char *e_buffer, int exponent)
+int		put_exponent(char *e_buffer, long long exponent)
 {
 //	int		i;
 //	int	frst;
@@ -94,16 +94,16 @@ void	put_fraction(char *e_buffer, int index, int precision, double nbr)
 {
 	int		i;
 	double	exponent;
-	int		valueFloat;
+	long long	valueFloat;
 
-	exponent = (double)((int)nbr);
+	exponent = (double)((long long)nbr);
 	if(precision > 0)
 	{
 		e_buffer[index++] = '.';
 		i = 1;
 		while (i <= precision)
 		{
-			valueFloat = ft_abs((int)((nbr - exponent) * ft_pow(10.0, i)));
+			valueFloat = ft_abs((long long)((nbr - exponent) * ft_pow(10.0, i)));
 			e_buffer[index] = (char)(((valueFloat) % 10) + 48);
 			index++;
 			i++;
@@ -135,16 +135,14 @@ void	ft_round(char *str, int index)
 	}
 }
 
-
-
 char	*handle_float(double nbr, int precision)
 {
-	int	exponent;
+	long long	exponent;
 	char	*e_buffer;
 	int		e_count;
 	int 	i;
 
-	exponent = (int)nbr;
+	exponent = (long long)nbr;
 	e_count = nbrlen(exponent);
 	precision = nbr < 0 ? precision + 1 : precision;
 	e_buffer = malloc(sizeof(char) * (e_count + (++precision) + 2));
