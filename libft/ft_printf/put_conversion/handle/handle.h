@@ -18,6 +18,6 @@
 char	*handle_minwidth(t_conversion *conv, char *str, size_t margin);
 char	*handle_precision(t_conversion *conv, char *str, int l, size_t margin);
 char	*handle_apostrophe(char *nbr);
-char	*handle_float(float nbr, int precision);
+char	*handle_float(double nbr, int precision);
 
 #endif

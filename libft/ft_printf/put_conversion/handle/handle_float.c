@@ -90,13 +90,13 @@ int		put_exponent(char *e_buffer, int exponent)
 	return (i);
 }
 
-void	put_fraction(char *e_buffer, int index, int precision, float nbr)
+void	put_fraction(char *e_buffer, int index, int precision, double nbr)
 {
 	int		i;
-	float	exponent;
+	double	exponent;
 	int		valueFloat;
 
-	exponent = (float)abs((int)nbr);
+	exponent = (double)abs((int)nbr);
 	if(precision > 0)
 	{
 		e_buffer[index++] = '.';
@@ -137,7 +137,7 @@ void	ft_round(char *str, int index)
 
 
 
-char	*handle_float(float nbr, int precision)
+char	*handle_float(double nbr, int precision)
 {
 	int	exponent;
 	char	*e_buffer;
