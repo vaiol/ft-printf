@@ -23,5 +23,4 @@ void	put_memory(t_conversion *conv, va_list valist);
 void	put_printed(t_conversion *conv, va_list valist);
 void	put_float(t_conversion *conv, va_list valist);
 
-
 #endif

@@ -6,7 +6,7 @@
 /*   By: astepano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/07 20:42:19 by astepano          #+#    #+#             */
-/*   Updated: 2017/03/07 20:42:21 by astepano         ###   ########.fr       */
+/*   Updated: 2017/03/11 23:40:10 by astepano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ char		*ft_strjoin(char const *s1, char const *s2);
 char		*ft_itoa_base(long long value, int base);
 int			ft_strcchr(const char *str, char c);
 char		*ft_strcut(char *str, int max_len);
+double		ft_pow(double base, double ex);
+long long	ft_abs(long long nbr);
 int			ft_printf(const char *restrict format, ...);
 
 #endif
