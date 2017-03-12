@@ -68,7 +68,7 @@ void						put_conversion(t_conversion *conv, va_list valist)
 		put_memory(conv, valist);
 	else if (conv->type == 'n')
 		put_printed(conv, valist);
-	else if (ft_strcchr("fFeEgG", conv->type))
+	else if (ft_strcchr("fFeEgGaA", conv->type))
 		put_float(conv, valist);
 	else
 		put_char(conv, valist);

@@ -19,8 +19,8 @@
 /* Convenient bit representation for modifier flags, which all fall
  * within 31 codepoints of the space character. */
 
-#define ZERO_PAD   (1U << ('0'-' '))
-#define LEFT_ADJ   (1U << ('-'-' '))
+#define ZERO_PAD (1U << ('0'-' '))
+#define LEFT_ADJ (1U << ('-'-' '))
 
 typedef struct	s_arrays
 {
@@ -43,9 +43,9 @@ typedef struct	s_indecies
 
 typedef struct	s_bufs
 {
-	char	buf[9 + LDBL_MANT_DIG / 4];
-	char	ebuf0[sizeof(int) * 3];
-	char	*ebuf;
+	char		buf[9 + LDBL_MANT_DIG / 4];
+	char		ebuf0[sizeof(int) * 3];
+	char		*ebuf;
 }				t_bufs;
 
 void			rounder(int p, int t, t_arrays *arrays, t_indecies *indecies);
