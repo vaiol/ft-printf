@@ -19,7 +19,7 @@ void	put_float(t_conversion *conv, va_list valist)
 
 	if (conv->precision < 0)
 		conv->precision = 6;
-	str = handle_double(va_arg(valist, double), conv->precision);
+	str = handle_double(va_arg(valist, double), conv->precision, conv->type);
 	margin = (size_t)(conv->sign || str[0] == '-');
 	if (conv->sign && str[0] != '-')
 		str = strjoinchr(str, conv->sign, 1, BEGIN);

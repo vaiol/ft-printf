@@ -103,10 +103,10 @@ char			*handle_float(double nbr, int precision)
 	return (result);
 }
 
-char			*handle_double(long double nbr, int precision)
+char			*handle_double(long double nbr, int precision, char type)
 {
 	char	tmp[1000];
 
-	ftoa(tmp, nbr, precision, 'f');
+	ftoa(tmp, nbr, precision, type);
 	return (ft_strdup(tmp));
 }
