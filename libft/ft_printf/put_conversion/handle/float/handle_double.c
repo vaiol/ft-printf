@@ -101,34 +101,3 @@ void 	next_function(t_indecies *indecies, t_arrays *arrays, int p, int t)
 		handle_e(arrays, p, estr, bufs);
 	*(arrays->copy) = 0;
 }
-
-//int main() {
-//	long double test[] = {10.999999999999, 0.8888888888888, 1.0 / -0.0, -67454675565667556754654675467556756750.12423453423423423423423423452545, 0.00000000000000245, 0.0 / 0.0 };
-//	size_t i;
-//	for (i = 0; i < sizeof(test)/sizeof(test[0]); i++) {
-//		char buffer[256];
-//		for (int j = 0; j <= 256; j++)
-//			buffer[i] = '\0';
-//		fmt_fp(buffer, test[i], -1, 'f');
-//		printf("%s\n",buffer);
-//		printf("%Lf\n", test[i]);
-//	}
-//	printf("-------------------------------\n");
-//	for (i = 0; i < sizeof(test)/sizeof(test[0]); i++) {
-//		char buffer[256];
-//		for (int j = 0; j <= 256; j++)
-//			buffer[i] = '\0';
-//		fmt_fp(buffer, test[i], -1, 'g');
-//		printf("%s\n",buffer);
-//		printf("%Lg\n", test[i]);
-//	}
-//	for (i = 0; i < sizeof(test)/sizeof(test[0]); i++) {
-//		char buffer[256];
-//		for (int j = 0; j <= 256; j++)
-//			buffer[i] = '\0';
-//		fmt_fp(buffer, test[i], -1, 'e');
-//		printf("%s\n",buffer);
-//		printf("%Le\n", test[i]);
-//	}
-//	return 0;
-//}
