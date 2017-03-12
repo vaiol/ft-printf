@@ -19,5 +19,7 @@ char	*handle_minwidth(t_conversion *conv, char *str, size_t margin);
 char	*handle_precision(t_conversion *conv, char *str, int l, size_t margin);
 char	*handle_apostrophe(char *nbr);
 char	*handle_float(double nbr, int precision);
+char	*handle_double(long double nbr, int precision);
+void	ftoa(char *outstr, long double nbr, int p, int t);
 
 #endif

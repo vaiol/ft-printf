@@ -13,6 +13,7 @@
 CC = gcc
 PRINTF = ft_printf/
 PUTCONV = put_conversion/
+FLOAT = $(PRINTF)$(PUTCONV)handle/float/
 UTIL = $(PRINTF)$(PUTCONV)/util/
 CONV = $(PRINTF)$(PUTCONV)/put_
 HANDLE = $(PRINTF)$(PUTCONV)/handle/handle_
@@ -31,7 +32,9 @@ PRINTF_SRCS = $(PRINTF)ft_printf.c \
 		   $(PARSE)all.c  $(PARSE)flags.c $(PARSE)type.c $(PARSE)minwidth.c \
 		   $(PARSE)precision.c $(PARSE)size.c \
 		   $(HANDLE)minwidth.c $(HANDLE)precision.c $(HANDLE)apostrophe.c \
-		   $(HANDLE)float.c
+		   $(HANDLE)float.c \
+		   $(FLOAT)additionals.c $(FLOAT)handle_double.c $(FLOAT)handlers.c \
+		   $(FLOAT)parsers.c $(FLOAT)rounder.c
 SRCS = $(LIB_SRCS) $(PRINTF_SRCS)
 
 LIB_OBJS = $(LIB_SRCS:.c=.o)
@@ -44,7 +47,7 @@ LIB_NAME = libft.a
 PRINTF_NAME = printf.a
 NAME = libftprintf.a
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS =
 
 all: $(NAME)
 

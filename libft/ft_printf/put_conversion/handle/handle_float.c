@@ -102,3 +102,11 @@ char			*handle_float(double nbr, int precision)
 	result[e_count + precision + i - 1] = '\0';
 	return (result);
 }
+
+char			*handle_double(long double nbr, int precision)
+{
+	char	tmp[1000];
+
+	ftoa(tmp, nbr, precision, 'f');
+	return (ft_strdup(tmp));
+}
