@@ -46,6 +46,7 @@ typedef struct	s_conversion
 	int			precision;
 	int			hashtag;
 	int			apostrophe;
+	int 		ldouble;
 	char		padding;
 	char		sign;
 	t_size		size;

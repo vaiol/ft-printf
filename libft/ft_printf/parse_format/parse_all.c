@@ -12,20 +12,21 @@
 
 #include "parse_all.h"
 
-static t_conversion	*create_form(void)
+static t_conversion	*create_conversion(void)
 {
-	t_conversion	*form;
+	t_conversion	*conversion;
 
-	form = (t_conversion *)malloc(sizeof(t_conversion));
-	form->precision = -1;
-	form->minimum_width = 0;
-	form->hashtag = 0;
-	form->apostrophe = 0;
-	form->padding = '\0';
-	form->sign = '\0';
-	form->type = '\0';
-	form->size = N;
-	return (form);
+	conversion = (t_conversion *)malloc(sizeof(t_conversion));
+	conversion->precision = -1;
+	conversion->minimum_width = 0;
+	conversion->hashtag = 0;
+	conversion->apostrophe = 0;
+	conversion->padding = '\0';
+	conversion->sign = '\0';
+	conversion->type = '\0';
+	conversion->size = N;
+	conversion->ldouble = '\0';
+	return (conversion);
 }
 
 size_t				parse(const char *f, size_t i, va_list valist)
@@ -33,7 +34,7 @@ size_t				parse(const char *f, size_t i, va_list valist)
 	size_t			tmp;
 	t_conversion	*form;
 
-	form = create_form();
+	form = create_conversion();
 	tmp = 0;
 	while (f[i] && tmp != i)
 	{

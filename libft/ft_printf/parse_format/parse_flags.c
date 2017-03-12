@@ -28,6 +28,8 @@ size_t	parse_flags(const char *f, size_t i, t_conversion *form)
 			form->padding = form->padding == '-' ? form->padding : (char)'0';
 		else if (f[i] == '-')
 			form->padding = '-';
+		else if (f[i] == 'L')
+			form->ldouble = 1;
 		else
 			break ;
 		i++;
