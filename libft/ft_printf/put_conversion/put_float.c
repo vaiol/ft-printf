@@ -12,11 +12,11 @@
 
 #include "put_conversion.h"
 
-static char	*handle_float(long double nbr, int precision, char type)
+static char	*handle_float(long double nbr, t_conversion *conv)
 {
-	char	tmp[1000];
+	char	tmp[FLOAT_SIZE];
 
-	ftoa(tmp, nbr, precision, type);
+	ftoa_conv(tmp, nbr, conv);
 	return (ft_strdup(tmp));
 }
 
@@ -28,9 +28,9 @@ void		put_float(t_conversion *conv, va_list valist)
 	if (conv->precision < 0)
 		conv->precision = 6;
 	if (conv->ldouble)
-		str = handle_float(va_arg(valist, long double), conv->precision, conv->type);
+		str = handle_float(va_arg(valist, long double), conv);
 	else
-		str = handle_float(va_arg(valist, double), conv->precision, conv->type);
+		str = handle_float(va_arg(valist, double), conv);
 	margin = (size_t)(conv->sign || str[0] == '-');
 	if (conv->sign && str[0] != '-')
 		str = strjoinchr(str, conv->sign, 1, BEGIN);

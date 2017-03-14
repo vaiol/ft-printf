@@ -50,7 +50,7 @@ typedef struct	s_conversion
 	char		padding;
 	char		sign;
 	t_size		size;
-	char		type;
+	int			type;
 
 }				t_conversion;
 

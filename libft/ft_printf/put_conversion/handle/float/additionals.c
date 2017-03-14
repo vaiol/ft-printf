@@ -9,44 +9,66 @@ void	out(char **sp, const char *s, size_t l)
 	}
 }
 
-void	pad(char **sp, char c, int w, int l, int fl)
+void	pad(char **sp, char c, int w, int l)
 {
-	char pad[256];
+	char pad[FLOAT_SIZE];
 
-	if (fl & (LEFT_ADJ | ZERO_PAD) || l >= w) return;
+	if (l >= w)
+		return;
 	l = w - l;
-	memset(pad, c, l>sizeof pad ? sizeof pad : l);
-	for (; l >= sizeof pad; l -= sizeof pad)
+	ft_memset(pad, c, l > (int)sizeof(pad) ? sizeof(pad) : (size_t)l);
+	while (l >= (int)sizeof(pad))
+	{
 		out(sp, pad, sizeof pad);
-	out(sp, pad, l);
+		l -= (int)sizeof(pad);
+	}
+	out(sp, pad, (size_t)l);
 }
 
-char	*fmt_u(uintmax_t x, char *s)
+char	*fmt_unsigned(uintmax_t x, char *s)
 {
 	unsigned long	y;
 
 	while (x > ULONG_MAX)
 	{
-		*--s = '0' + x % 10;
-		x/=10;
+		*(--s) = (char)('0' + x % 10);
+		x /= 10;
 	}
 	y = x;
 	while (y)
 	{
-		*--s = '0' + y % 10;
+		*(--s) = (char)('0' + y % 10);
 		y /= 10;
 	}
-	return s;
+	return (s);
 }
 
-int infinite(long double nbr, int t, char *sp, t_indecies *indecies)
+char	*fmt_base(uintmax_t x, char *s, int base)
+{
+	unsigned long	y;
+
+	while (x > ULONG_MAX)
+	{
+		*(--s) = (char)('0' + x % base);
+		x /= base;
+	}
+	y = x;
+	while (y)
+	{
+		*(--s) = (char)('0' + y % base);
+		y /= base;
+	}
+	return (s);
+}
+
+int		infinite(long double nbr, int t, char *sp, t_indecies *i)
 {
 	if (nbr == INFINITY || nbr != nbr)
 	{
 		char *s = (t & 32) ? "inf\0" : "INF\0";
 		if (nbr != nbr)
-			s = (t & 32) ? "nan\0" : "NAN\0", indecies->pl = 0;
-		out(&sp, indecies->prefix, indecies->pl);
+			s = (t & 32) ? "nan\0" : "NAN\0", i->pl = 0;
+		out(&sp, i->prefix, (size_t)i->pl);
 		out(&sp, s, 4);
 		return (1);
 	}

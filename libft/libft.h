@@ -18,7 +18,6 @@
 # include <stdlib.h>
 # include <wchar.h>
 
-void		*ft_memcpy(void *restrict dst, const void *restrict src, size_t n);
 size_t		ft_strlen(const char *s);
 char		*ft_strdup(const char *s1);
 int			ft_atoi(const char *str);
@@ -29,7 +28,7 @@ char		*ft_itoa_base(long long value, int base);
 int			ft_strcchr(const char *str, char c);
 char		*ft_strcut(char *str, int max_len);
 double		ft_pow(double base, double ex);
-long long	ft_abs(long long nbr);
+void		*ft_memset(void *b, int c, size_t len);
 int			ft_printf(const char *restrict format, ...);
 
 #endif

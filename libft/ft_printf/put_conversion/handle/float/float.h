@@ -1,26 +1,16 @@
 #ifndef FLOAT_H
 # define FLOAT_H
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <limits.h>
-#include <float.h>
-#include <math.h>
-#include <zconf.h>
+# include <limits.h>
+# include <float.h>
+# include <math.h>
+# include "../handle.h"
 
-/* Some useful macros */
+# define MAX(a,b) ((a)>(b) ? (a) : (b))
+# define MIN(a,b) ((a)<(b) ? (a) : (b))
+# define CONCAT2(x, y) x ## y
+# define CONCAT(x, y) CONCAT2(x, y)
 
-#define MAX(a,b) ((a)>(b) ? (a) : (b))
-#define MIN(a,b) ((a)<(b) ? (a) : (b))
-#define CONCAT2(x,y) x ## y
-#define CONCAT(x,y) CONCAT2(x,y)
-
-/* Convenient bit representation for modifier flags, which all fall
- * within 31 codepoints of the space character. */
-
-#define ZERO_PAD (1U << ('0'-' '))
-#define LEFT_ADJ (1U << ('-'-' '))
 
 typedef struct	s_arrays
 {
@@ -48,16 +38,18 @@ typedef struct	s_bufs
 	char		*ebuf;
 }				t_bufs;
 
-void			rounder(int p, int t, t_arrays *arrays, t_indecies *indecies);
-void			handle_g(int *p, t_arrays *arrays, int *t, t_indecies *indecies);
-void 			handle_f(t_arrays *arrays, int p, t_bufs *bufs);
-void 			handle_e(t_arrays *arrays, int p, char *estr, t_bufs *bufs);
+void			rounder(int p, int t, t_arrays *a, t_indecies *i);
+void			handle_g(t_arrays *a, t_indecies *i, t_conversion *c);
+void 			handle_f(t_arrays *a, int p, t_bufs *bufs, int hash);
+void 			handle_e(t_arrays *a, char *es, t_bufs *bufs, t_conversion *c);
+void			handle_a(t_arrays *a, char *es, t_bufs *bufs, t_conversion *c);
 void			out(char **sp, const char *s, size_t l);
-void			pad(char **sp, char c, int w, int l, int fl);
-char			*fmt_u(uintmax_t x, char *s);
-int				infinite(long double nbr, int t, char *sp, t_indecies *indecies);
-void			parse_int(t_indecies *indecies, t_arrays *arrays);
-void			parse_fract(t_indecies *indecies, t_arrays *arrays, int t, int p);
-void			next_function(t_indecies *indecies, t_arrays *arrays, int p, int t);
+void			pad(char **sp, char c, int w, int l);
+char			*fmt_unsigned(uintmax_t x, char *s);
+int				infinite(long double nbr, int t, char *sp, t_indecies *i);
+void			parse_int(t_indecies *i, t_arrays *a);
+void			parse_fract(t_indecies *i, t_arrays *a, int t, int p);
+void			next_function(t_indecies *i, t_arrays *a, t_conversion *c);
+long double		ft_frexpl(long double value, int *e);
 
 #endif

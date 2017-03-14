@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle.h                                           :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astepano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/10 17:37:44 by astepano          #+#    #+#             */
-/*   Updated: 2017/03/10 17:41:18 by astepano         ###   ########.fr       */
+/*   Created: 2016/11/28 15:58:16 by astepano          #+#    #+#             */
+/*   Updated: 2016/12/09 18:33:46 by astepano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HANDLE_H
-# define HANDLE_H
-# define FLOAT_SIZE 1024
+#include "libft.h"
 
-# include "../util/util.h"
+void	*ft_memset(void *b, int c, size_t len)
+{
+	size_t i;
 
-char	*handle_minwidth(t_conversion *conv, char *str, size_t margin);
-char	*handle_precision(t_conversion *conv, char *str, int l, size_t margin);
-char	*handle_apostrophe(char *nbr);
-void	ftoa_conv(char *outstr, long double nbr, t_conversion *c);
-
-#endif
+	i = 0;
+	while (i < len)
+	{
+		((unsigned char *)b)[i] = (unsigned char)c;
+		i++;
+	}
+	return (b);
+}
