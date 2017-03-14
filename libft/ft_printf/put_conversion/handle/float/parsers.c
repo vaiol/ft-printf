@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsers.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: astepano <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/03/14 20:46:50 by astepano          #+#    #+#             */
+/*   Updated: 2017/03/14 20:46:52 by astepano         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "float.h"
 
 void	parse_int(t_indecies *i, t_arrays *a)
@@ -6,10 +18,10 @@ void	parse_int(t_indecies *i, t_arrays *a)
 	uint64_t	x;
 	uint32_t	carry;
 
-	while (i->e2 > 0)
+	while (i->exp_size > 0)
 	{
 		carry = 0;
-		sh = MIN(29, i->e2);
+		sh = MIN(29, i->exp_size);
 		a->d = a->z - 1;
 		while (a->d >= a->a)
 		{
@@ -22,7 +34,7 @@ void	parse_int(t_indecies *i, t_arrays *a)
 			a->z--;
 		if (carry)
 			*--(a->a) = carry;
-		i->e2 -= sh;
+		i->exp_size -= sh;
 	}
 }
 
@@ -33,10 +45,10 @@ void	parse_fract(t_indecies *i, t_arrays *a, int t, int p)
 	uint32_t	rm;
 	int			sh;
 
-	while (i->e2 < 0)
+	while (i->exp_size < 0)
 	{
-		carry =0;
-		sh = MIN(9, -i->e2);
+		carry = 0;
+		sh = MIN(9, -i->exp_size);
 		a->d = a->a;
 		while (a->d < a->z)
 		{
@@ -51,6 +63,6 @@ void	parse_fract(t_indecies *i, t_arrays *a, int t, int p)
 			*(a->z)++ = carry;
 		z2 = ((t | 32) == 'f' ? a->r : a->a) + 2 + p / 9;
 		a->z = MIN(a->z, z2);
-		i->e2 += sh;
+		i->exp_size += sh;
 	}
 }

@@ -1,8 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   additionals.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: astepano <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/03/14 20:46:02 by astepano          #+#    #+#             */
+/*   Updated: 2017/03/14 20:46:03 by astepano         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "float.h"
 
 void	out(char **sp, const char *s, size_t l)
 {
-	while (l--) {
+	while (l--)
+	{
 		**sp = *s;
 		(*sp)++;
 		s++;
@@ -14,12 +27,12 @@ void	pad(char **sp, char c, int w, int l)
 	char pad[FLOAT_SIZE];
 
 	if (l >= w)
-		return;
+		return ;
 	l = w - l;
 	ft_memset(pad, c, l > (int)sizeof(pad) ? sizeof(pad) : (size_t)l);
 	while (l >= (int)sizeof(pad))
 	{
-		out(sp, pad, sizeof pad);
+		out(sp, pad, sizeof(pad));
 		l -= (int)sizeof(pad);
 	}
 	out(sp, pad, (size_t)l);
@@ -61,15 +74,20 @@ char	*fmt_base(uintmax_t x, char *s, int base)
 	return (s);
 }
 
-int		infinite(long double nbr, int t, char *sp, t_indecies *i)
+int		infinite(long double nbr, int t, char *copy, t_indecies *i)
 {
+	char	*s;
+
 	if (nbr == INFINITY || nbr != nbr)
 	{
-		char *s = (t & 32) ? "inf\0" : "INF\0";
+		s = (t & 32) ? "inf\0" : "INF\0";
 		if (nbr != nbr)
-			s = (t & 32) ? "nan\0" : "NAN\0", i->pl = 0;
-		out(&sp, i->prefix, (size_t)i->pl);
-		out(&sp, s, 4);
+		{
+			s = (t & 32) ? "nan\0" : "NAN\0";
+			i->pl = 0;
+		}
+		out(&copy, i->prefix, (size_t)i->pl);
+		out(&copy, s, 4);
 		return (1);
 	}
 	return (0);

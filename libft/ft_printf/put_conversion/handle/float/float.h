@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   float.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: astepano <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/03/14 20:46:19 by astepano          #+#    #+#             */
+/*   Updated: 2017/03/14 20:46:20 by astepano         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FLOAT_H
 # define FLOAT_H
 
@@ -8,9 +20,8 @@
 
 # define MAX(a,b) ((a)>(b) ? (a) : (b))
 # define MIN(a,b) ((a)<(b) ? (a) : (b))
-# define CONCAT2(x, y) x ## y
-# define CONCAT(x, y) CONCAT2(x, y)
-
+# define CONCAT2(y) 0x1p ## y
+# define CONCAT(y) CONCAT2(y)
 
 typedef struct	s_arrays
 {
@@ -26,8 +37,8 @@ typedef struct	s_indecies
 	char		*prefix;
 	int			pl;
 	int			e;
-	int			e2;
-	int 		i;
+	int			exp_size;
+	int			i;
 	int			j;
 }				t_indecies;
 
@@ -40,13 +51,12 @@ typedef struct	s_bufs
 
 void			rounder(int p, int t, t_arrays *a, t_indecies *i);
 void			handle_g(t_arrays *a, t_indecies *i, t_conversion *c);
-void 			handle_f(t_arrays *a, int p, t_bufs *bufs, int hash);
-void 			handle_e(t_arrays *a, char *es, t_bufs *bufs, t_conversion *c);
-void			handle_a(t_arrays *a, char *es, t_bufs *bufs, t_conversion *c);
+void			handle_f(t_arrays *a, int p, t_bufs *bufs, int hash);
+void			handle_e(t_arrays *a, char *es, t_bufs *bufs, t_conversion *c);
 void			out(char **sp, const char *s, size_t l);
 void			pad(char **sp, char c, int w, int l);
 char			*fmt_unsigned(uintmax_t x, char *s);
-int				infinite(long double nbr, int t, char *sp, t_indecies *i);
+int				infinite(long double nbr, int t, char *copy, t_indecies *i);
 void			parse_int(t_indecies *i, t_arrays *a);
 void			parse_fract(t_indecies *i, t_arrays *a, int t, int p);
 void			next_function(t_indecies *i, t_arrays *a, t_conversion *c);

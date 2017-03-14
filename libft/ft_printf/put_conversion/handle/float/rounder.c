@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rounder.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: astepano <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/03/14 20:46:57 by astepano          #+#    #+#             */
+/*   Updated: 2017/03/14 20:46:59 by astepano         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "float.h"
 
-static void 	round_sub(int e, int i, t_arrays *a)
+static void		round_sub(int e, int i, t_arrays *a)
 {
 	*(a->d) = *(a->d) + i;
 	while (*(a->d) > 999999999)
@@ -24,7 +36,7 @@ static void		round_one(int i, t_arrays *a, uint32_t x, t_indecies *in)
 	long double	round;
 	long double	small;
 
-	round = CONCAT(0x1p, LDBL_MANT_DIG);
+	round = CONCAT(LDBL_MANT_DIG);
 	if (*(a->d) / i & 1)
 		round += 2;
 	if ((int)x < i / 2)
@@ -49,7 +61,7 @@ void			rounder(int p, int t, t_arrays *arrays, t_indecies *indecies)
 	int			j;
 	uint32_t	x;
 
-	j = p - ((t | 32) != 'f') * indecies->e - ((t | 32) =='g' && p);
+	j = p - ((t | 32) != 'f') * indecies->e - ((t | 32) == 'g' && p);
 	if (j < 9 * (arrays->z - arrays->r - 1))
 	{
 		arrays->d = arrays->r + 1 + (j + 9 * LDBL_MAX_EXP) / 9 - LDBL_MAX_EXP;

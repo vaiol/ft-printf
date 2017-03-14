@@ -31,7 +31,7 @@ PRINTF_SRCS = $(PRINTF)ft_printf.c \
 		   $(CONV)float.c \
 		   $(CONV)string.c $(CONV)char.c $(CONV)memory.c $(CONV)printed.c \
 		   $(PARSE)all.c  $(PARSE)flags.c $(PARSE)type.c $(PARSE)minwidth.c \
-		   $(PARSE)precision.c $(PARSE)size.c \
+		   $(PARSE)precision.c $(PARSE)size.c $(PARSE)color.c \
 		   $(HANDLE)minwidth.c $(HANDLE)precision.c $(HANDLE)apostrophe.c \
 		   $(FLOAT)additionals.c $(FLOAT)float.c $(FLOAT)frexpl.c \
 		   $(FLOAT)parsers.c $(FLOAT)rounder.c $(FLOAT)handle_e.c \

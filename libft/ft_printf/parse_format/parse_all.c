@@ -34,6 +34,8 @@ size_t				parse(const char *f, size_t i, va_list valist)
 	size_t			tmp;
 	t_conversion	*form;
 
+	if (f[i - 1] == '{')
+		return (parse_color(f, i));
 	form = create_conversion();
 	tmp = 0;
 	while (f[i] && tmp != i)

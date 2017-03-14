@@ -18,17 +18,6 @@
 # include "../libft.h"
 # include "put_conversion/put/put.h"
 
-/*
-** minimum_width: NBR
-** precision	: .NBR
-** hashtag		: #
-** apostrophe	: '
-** padding		: -0
-** sign			: + (space)
-** modifier		: hh, h, l, ll, z, j
-** conversion	:
-*/
-
 typedef enum	e_size
 {
 	N,
@@ -46,7 +35,7 @@ typedef struct	s_conversion
 	int			precision;
 	int			hashtag;
 	int			apostrophe;
-	int 		ldouble;
+	int			ldouble;
 	char		padding;
 	char		sign;
 	t_size		size;
@@ -55,6 +44,7 @@ typedef struct	s_conversion
 }				t_conversion;
 
 size_t			parse(const char *f, size_t i, va_list valist);
+size_t			parse_color(const char *f, size_t i);
 void			put_conversion(t_conversion *conv, va_list valist);
 
 #endif

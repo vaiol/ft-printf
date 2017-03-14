@@ -12,11 +12,11 @@
 
 #include "put_conversion.h"
 
-static char	*get_xx(t_conversion *conv, unsigned long long nbr, int hash)
+static char	*get_bx(t_conversion *conv, unsigned long long nbr, int hash, int b)
 {
 	char	*str;
 
-	str = utoa_base(nbr, 16, conv->type, hash);
+	str = utoa_base(nbr, b, conv->type, hash);
 	str = handle_precision(conv, str, hash, (size_t)hash);
 	if (!conv->precision && !nbr)
 		str = strclear(str);
@@ -53,7 +53,11 @@ void		put_unsigned(t_conversion *conv, unsigned long long number)
 	else if (conv->type == 'o')
 		nbr = get_ou(conv, number, hash, 8);
 	else if (ft_strcchr("xX", conv->type))
-		nbr = get_xx(conv, number, hash);
+		nbr = get_bx(conv, number, hash, 16);
+	else if (ft_strcchr("xX", conv->type))
+		nbr = get_bx(conv, number, hash, 16);
+	else if (conv->type == 'b')
+		nbr = get_bx(conv, number, hash, 2);
 	putstr(nbr);
 	free(nbr);
 }

@@ -25,7 +25,7 @@ int		ft_printf(const char *restrict format, ...)
 	i = 0;
 	while (format[i])
 	{
-		if (format[i] == '%')
+		if (format[i] == '%' || format[i] == '{')
 		{
 			ft_write(1, format + len, i - len);
 			len = parse(format, i + 1, valist);

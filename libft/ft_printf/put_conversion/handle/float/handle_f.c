@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   handle_f.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: astepano <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/03/14 20:46:37 by astepano          #+#    #+#             */
+/*   Updated: 2017/03/14 20:46:39 by astepano         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "float.h"
 
 static void	handle_f2(int *p, t_arrays *a, t_bufs *bufs)
@@ -12,7 +24,7 @@ static void	handle_f2(int *p, t_arrays *a, t_bufs *bufs)
 	*p -= 9;
 }
 
-void 		handle_f(t_arrays *a, int p, t_bufs *bufs, int hash)
+void		handle_f(t_arrays *a, int p, t_bufs *bufs, int hash)
 {
 	char	*s;
 

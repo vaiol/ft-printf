@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   float.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: astepano <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/03/14 20:46:10 by astepano          #+#    #+#             */
+/*   Updated: 2017/03/14 20:46:11 by astepano         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "float.h"
 
-void 	pre_parse(long double *nbr, t_arrays *a)
+void	pre_parse(long double *nbr, t_arrays *a)
 {
 	int i;
 
@@ -10,7 +22,7 @@ void 	pre_parse(long double *nbr, t_arrays *a)
 		*(a->z) = (uint32_t)*nbr;
 		*nbr = 1000000000 * ((*nbr) - *(a->z)++);
 		i = 0;
-	};
+	}
 }
 
 void	post_parse(t_arrays *a, t_indecies *i)
@@ -29,11 +41,11 @@ void	post_parse(t_arrays *a, t_indecies *i)
 		i->e = 0;
 }
 
-int 	init(long double *nbr, t_arrays *a, int t, t_indecies **i)
+int		init(long double *nbr, t_arrays *a, int t, t_indecies **i)
 {
 	(*i) = (t_indecies *)malloc(sizeof(t_indecies));
 	(*i)->prefix = "-0X+0X 0X-0x+0x 0x";
-	(*i)->e2 = 0;
+	(*i)->exp_size = 0;
 	(*i)->pl = 1;
 	if ((*nbr) < 0 || 1 / (*nbr) < 0)
 		(*nbr) = -(*nbr);
@@ -44,12 +56,12 @@ int 	init(long double *nbr, t_arrays *a, int t, t_indecies **i)
 	}
 	if (infinite(*nbr, t, a->copy, *i))
 		return (1);
-	(*nbr) = ft_frexpl(*nbr, &((*i)->e2)) * 2;
+	(*nbr) = ft_frexpl(*nbr, &((*i)->exp_size)) * 2;
 	if (*nbr)
 	{
-		(*i)->e2--;
+		(*i)->exp_size--;
 		(*nbr) *= 0x1p28;
-		(*i)->e2 -= 28;
+		(*i)->exp_size -= 28;
 	}
 	return (0);
 }
@@ -59,16 +71,19 @@ void	ftoa_conv(char *outstr, long double nbr, t_conversion *c)
 	uint32_t	b[(LDBL_MAX_EXP + LDBL_MANT_DIG) / 9 + 1];
 	t_arrays	*a;
 	t_indecies	*indecies;
+	uint32_t	*bi;
 
-	a = (t_arrays *) malloc(sizeof(t_arrays));
+	a = (t_arrays *)malloc(sizeof(t_arrays));
 	a->copy = outstr;
 	if (init(&nbr, a, c->type, &indecies))
-		return;
-	if (indecies->e2 < 0)
-		a->a = a->r = a->z = b;
+		return ;
+	if (indecies->exp_size < 0)
+		bi = b;
 	else
-		a->a = a->r = a->z = b + sizeof(b) / sizeof(*b) - LDBL_MANT_DIG - 1;
-	c->precision = c->precision < 0 ? 6 : c->precision;
+		bi = b + sizeof(b) / sizeof(*b) - LDBL_MANT_DIG - 1;
+	a->a = bi;
+	a->r = bi;
+	a->z = bi;
 	pre_parse(&nbr, a);
 	parse_int(indecies, a);
 	parse_fract(indecies, a, c->type, c->precision);
@@ -79,7 +94,7 @@ void	ftoa_conv(char *outstr, long double nbr, t_conversion *c)
 	next_function(indecies, a, c);
 }
 
-void 	next_function(t_indecies *i, t_arrays *a, t_conversion *c)
+void	next_function(t_indecies *i, t_arrays *a, t_conversion *c)
 {
 	t_bufs		*bufs;
 	char		*estr;
@@ -92,8 +107,8 @@ void 	next_function(t_indecies *i, t_arrays *a, t_conversion *c)
 	{
 		ie = i->e < 0 ? (uintmax_t)-(i->e) : (uintmax_t)i->e;
 		estr = fmt_unsigned(ie, bufs->ebuf);
-		while (bufs->ebuf-estr < 2)
-			*--estr='0';
+		while (bufs->ebuf - estr < 2)
+			*(--estr) = '0';
 		*(--estr) = (char)(i->e < 0 ? '-' : '+');
 		*(--estr) = (char)c->type;
 	}

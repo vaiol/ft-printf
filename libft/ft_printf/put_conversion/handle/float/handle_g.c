@@ -1,8 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   handle_g.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: astepano <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/03/14 20:46:44 by astepano          #+#    #+#             */
+/*   Updated: 2017/03/14 20:46:45 by astepano         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "float.h"
 
 static void	handle_g2(t_indecies *i, t_conversion *c, t_arrays *a)
 {
 	unsigned long	max;
+
 	if (a->z > a->a && a->z[-1])
 	{
 		i->i = 10;
@@ -20,7 +33,6 @@ static void	handle_g2(t_indecies *i, t_conversion *c, t_arrays *a)
 		c->precision = MIN(c->precision, (int)max - i->j);
 	else
 		c->precision = MIN(c->precision, (int)max + i->e - i->j);
-
 }
 
 void		handle_g(t_arrays *a, t_indecies *i, t_conversion *c)

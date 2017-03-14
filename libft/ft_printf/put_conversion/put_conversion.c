@@ -60,15 +60,15 @@ void						put_conversion(t_conversion *conv, va_list valist)
 {
 	if (conv->type == 's')
 		put_string(conv, valist);
-	else if (ft_strcchr("di", conv->type))
+	else if (ft_strcchr("di", (char)conv->type))
 		put_signed(conv, get_signed(conv, valist));
-	else if (ft_strcchr("ouxX", conv->type))
+	else if (ft_strcchr("ouxXb", (char)conv->type))
 		put_unsigned(conv, get_unsigned(conv, valist));
 	else if (conv->type == 'p')
 		put_memory(conv, valist);
 	else if (conv->type == 'n')
 		put_printed(conv, valist);
-	else if (ft_strcchr("fFeEgGaA", conv->type))
+	else if (ft_strcchr("fFeEgGaA", (char)conv->type))
 		put_float(conv, valist);
 	else
 		put_char(conv, valist);

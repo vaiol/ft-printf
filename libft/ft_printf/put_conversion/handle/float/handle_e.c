@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   handle_e.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: astepano <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/03/14 20:46:31 by astepano          #+#    #+#             */
+/*   Updated: 2017/03/14 20:46:33 by astepano         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "float.h"
 
 static void	handle_e2(t_arrays *a, t_bufs *bufs, t_conversion *c)
@@ -6,11 +18,11 @@ static void	handle_e2(t_arrays *a, t_bufs *bufs, t_conversion *c)
 
 	s = fmt_unsigned(*(a->d), bufs->buf + 9);
 	if (s == bufs->buf + 9)
-		*--s = '0';
+		*(--s) = '0';
 	if (a->d != a->a)
 	{
 		while (s > bufs->buf)
-			*--s='0';
+			*(--s) = '0';
 	}
 	else
 	{
@@ -18,7 +30,7 @@ static void	handle_e2(t_arrays *a, t_bufs *bufs, t_conversion *c)
 		if (c->precision > 0 || c->hashtag)
 			out(&(a->copy), ".", 1);
 	}
-	out(&(a->copy), s, MIN(bufs->buf + 9 - s, (unsigned long)c->precision));
+	out(&(a->copy), s, MIN(bufs->buf + 9 - s, c->precision));
 	c->precision -= bufs->buf + 9 - s;
 	a->d++;
 }
