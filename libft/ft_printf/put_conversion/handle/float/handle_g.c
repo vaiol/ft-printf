@@ -6,7 +6,7 @@
 /*   By: astepano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/14 20:46:44 by astepano          #+#    #+#             */
-/*   Updated: 2017/03/14 20:46:45 by astepano         ###   ########.fr       */
+/*   Updated: 2017/03/14 22:29:48 by astepano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ static void	handle_g2(t_indecies *i, t_conversion *c, t_arrays *a)
 		c->precision = MIN(c->precision, MAX(0, max - i->j));
 	else
 		c->precision = MIN(c->precision, MAX(0, max + i->e - i->j));
-
 }
 
 void		handle_g(t_arrays *a, t_indecies *i, t_conversion *c)
