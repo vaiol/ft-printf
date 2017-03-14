@@ -14,7 +14,7 @@
 
 static void	handle_g2(t_indecies *i, t_conversion *c, t_arrays *a)
 {
-	unsigned long	max;
+	long	max;
 
 	if (a->z > a->a && a->z[-1])
 	{
@@ -28,11 +28,12 @@ static void	handle_g2(t_indecies *i, t_conversion *c, t_arrays *a)
 	}
 	else
 		i->j = 9;
-	max = MAX(0, 9 * (a->z - a->r - 1));
+	max = 9 * (a->z - a->r - 1);
 	if ((c->type | 32) == 'f')
-		c->precision = MIN(c->precision, (int)max - i->j);
+		c->precision = MIN(c->precision, MAX(0, max - i->j));
 	else
-		c->precision = MIN(c->precision, (int)max + i->e - i->j);
+		c->precision = MIN(c->precision, MAX(0, max + i->e - i->j));
+
 }
 
 void		handle_g(t_arrays *a, t_indecies *i, t_conversion *c)
