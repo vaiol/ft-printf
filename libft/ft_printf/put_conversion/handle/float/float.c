@@ -81,6 +81,7 @@ void	ftoa_conv(char *outstr, long double nbr, t_conversion *c)
 		bi = b;
 	else
 		bi = b + sizeof(b) / sizeof(*b) - LDBL_MANT_DIG - 1;
+	c->precision = c->precision < 0 ? 6 : c->precision;
 	a->a = bi;
 	a->r = bi;
 	a->z = bi;
