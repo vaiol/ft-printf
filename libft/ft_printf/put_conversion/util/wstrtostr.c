@@ -40,3 +40,8 @@ char	*wstrtostr(wchar_t *s, int max_len)
 	}
 	return (str);
 }
+
+""
+"1234"
+"1234|12"
+"1234|12|123"

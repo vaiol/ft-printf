@@ -38,6 +38,29 @@ static char	*get_ou(t_conversion *conv, unsigned long long nbr, int h, int base)
 	return (str);
 }
 
+/*
+** 2005-08-09T18:31:42
+*/
+
+static char	*get_time(t_conversion *conv, unsigned long long nbr)
+{
+	t_time	*timet;
+	char	*str;
+
+	timet = handle_time(nbr);
+	str = ft_itoa_base(timet->year, 10);
+	str = create_time(str, timet->month, "-");
+	str = create_time(str, timet->day, "-");
+	str = create_time(str, timet->hour, " T");
+	str = create_time(str, timet->min, ":");
+	str = create_time(str, timet->sec, ":");
+	str = handle_precision(conv, str, 0, 0);
+	if (!conv->precision && !nbr)
+		str = strclear(str);
+	str = handle_minwidth(conv, str, 0);
+	return (str);
+}
+
 void		put_unsigned(t_conversion *conv, unsigned long long number)
 {
 	char	*nbr;
@@ -58,6 +81,8 @@ void		put_unsigned(t_conversion *conv, unsigned long long number)
 		nbr = get_bx(conv, number, hash, 16);
 	else if (conv->type == 'b')
 		nbr = get_bx(conv, number, hash, 2);
+	else if (conv->type == 'k')
+		nbr = get_time(conv, number);
 	putstr(nbr);
 	free(nbr);
 }

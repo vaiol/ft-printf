@@ -56,24 +56,6 @@ char	*fmt_unsigned(uintmax_t x, char *s)
 	return (s);
 }
 
-char	*fmt_base(uintmax_t x, char *s, int base)
-{
-	unsigned long	y;
-
-	while (x > ULONG_MAX)
-	{
-		*(--s) = (char)('0' + x % base);
-		x /= base;
-	}
-	y = x;
-	while (y)
-	{
-		*(--s) = (char)('0' + y % base);
-		y /= base;
-	}
-	return (s);
-}
-
 int		infinite(long double nbr, int t, char *copy, t_indecies *i)
 {
 	char	*s;

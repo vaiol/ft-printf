@@ -62,7 +62,7 @@ void						put_conversion(t_conversion *conv, va_list valist)
 		put_string(conv, valist);
 	else if (ft_strcchr("di", (char)conv->type))
 		put_signed(conv, get_signed(conv, valist));
-	else if (ft_strcchr("ouxXb", (char)conv->type))
+	else if (ft_strcchr("ouxXbk", (char)conv->type))
 		put_unsigned(conv, get_unsigned(conv, valist));
 	else if (conv->type == 'p')
 		put_memory(conv, valist);
