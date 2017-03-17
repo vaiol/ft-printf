@@ -81,8 +81,3 @@ char	*create_time(char *t1, int n2, char *delim)
 	free(t2);
 	return (result);
 }
-
-int 	main(void)
-{
-	ft_printf("%k %s %s\n", 1489603288, "2", "3");
-}

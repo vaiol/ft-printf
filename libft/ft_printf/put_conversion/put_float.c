@@ -16,6 +16,10 @@ static char	*handle_float(long double nbr, t_conversion *conv)
 {
 	char	tmp[FLOAT_SIZE];
 
+	if (conv->type == 'a' || conv->type == 'A')
+		return (handle_a(nbr, conv));
+	if (conv->precision < 0)
+		conv->precision = 6;
 	ftoa_conv(tmp, nbr, conv);
 	return (ft_strdup(tmp));
 }
@@ -25,8 +29,7 @@ void		put_float(t_conversion *conv, va_list valist)
 	size_t	margin;
 	char	*str;
 
-	if (conv->precision < 0)
-		conv->precision = 6;
+
 	if (conv->ldouble)
 		str = handle_float(va_arg(valist, long double), conv);
 	else

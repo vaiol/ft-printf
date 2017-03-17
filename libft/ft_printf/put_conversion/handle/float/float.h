@@ -18,6 +18,7 @@
 # include <math.h>
 # include "../handle.h"
 
+# define HEX_PREF_SIZE 3
 # define MAX(a,b) ((a)>(b) ? (a) : (b))
 # define MIN(a,b) ((a)<(b) ? (a) : (b))
 # define CONCAT2(y) 0x1p ## y
@@ -50,6 +51,7 @@ typedef struct	s_bufs
 }				t_bufs;
 
 void			rounder(int p, int t, t_arrays *a, t_indecies *i);
+char			*round_cut(char *nbr);
 void			handle_g(t_arrays *a, t_indecies *i, t_conversion *c);
 void			handle_f(t_arrays *a, int p, t_bufs *bufs, int hash);
 void			handle_e(t_arrays *a, char *es, t_bufs *bufs, t_conversion *c);
@@ -57,6 +59,7 @@ void			out(char **sp, const char *s, size_t l);
 void			pad(char **sp, char c, int w, int l);
 char			*fmt_unsigned(uintmax_t x, char *s);
 int				infinite(long double nbr, int t, char *copy, t_indecies *i);
+char			*infin(long double nbr, t_conversion *c, char *sign);
 void			parse_int(t_indecies *i, t_arrays *a);
 void			parse_fract(t_indecies *i, t_arrays *a, int t, int p);
 void			next_function(t_indecies *i, t_arrays *a, t_conversion *c);

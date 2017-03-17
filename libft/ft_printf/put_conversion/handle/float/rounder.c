@@ -83,3 +83,17 @@ void			rounder(int p, int t, t_arrays *arrays, t_indecies *indecies)
 			arrays->z--;
 	}
 }
+
+char			*round_cut(char *nbr)
+{
+	int	i;
+
+	i = (int)ft_strlen(nbr) - 1;
+	while (i >= 0)
+	{
+		if (nbr[i] != '0')
+			break ;
+		i--;
+	}
+	return (ft_strcut(nbr, i + 1));
+}

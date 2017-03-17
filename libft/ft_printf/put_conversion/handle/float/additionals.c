@@ -74,3 +74,20 @@ int		infinite(long double nbr, int t, char *copy, t_indecies *i)
 	}
 	return (0);
 }
+
+char	*infin(long double nbr, t_conversion *c, char *sign)
+{
+	char	*result;
+	char	*s;
+
+	s = (c->type == 'x') ? ft_strdup("inf") : ft_strdup("INF");
+	if (nbr != nbr)
+		s = (c->type == 'x') ? ft_strdup("nan") : ft_strdup("NAN");
+	if (sign)
+	{
+		result = ft_strjoin("-", s);
+		free(s);
+		return (result);
+	}
+	return (s);
+}
