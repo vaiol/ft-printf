@@ -33,6 +33,7 @@ PRINTF_SRCS = $(PRINTF)ft_printf.c \
 		   $(PARSE)all.c  $(PARSE)flags.c $(PARSE)type.c $(PARSE)minwidth.c \
 		   $(PARSE)precision.c $(PARSE)size.c $(PARSE)color.c \
 		   $(HANDLE)minwidth.c $(HANDLE)precision.c $(HANDLE)apostrophe.c \
+		   $(HANDLE)time.c \
 		   $(FLOAT)additionals.c $(FLOAT)float.c $(FLOAT)frexpl.c \
 		   $(FLOAT)parsers.c $(FLOAT)rounder.c $(FLOAT)handle_e.c \
 		   $(FLOAT)handle_f.c $(FLOAT)handle_g.c $(FLOAT)handle_a.c
