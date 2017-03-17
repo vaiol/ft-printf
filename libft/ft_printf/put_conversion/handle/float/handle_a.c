@@ -1,17 +1,15 @@
-#include <printf.h>
 #include "float.h"
 
-unsigned long long	ftohex(long double f, unsigned bits, unsigned eBits)
+unsigned  long long ftohex(long double f, unsigned bits, unsigned eBits, int *e)
 {
-	long double	fNorm;
-	int			shift;
-	long long	exp;
-	long long	significand;
-	unsigned	signBits;
+	long double			fNorm;
+	int					shift;
+	unsigned long long	significand;
+	unsigned			signBits;
 
 	signBits = bits - eBits - 1;
 	if (f == 0.0)
-		return 0;
+		return ((unsigned)(*e = 0));
 	fNorm = f;
 	shift = 0;
 	while(fNorm >= 2.0)
@@ -25,32 +23,25 @@ unsigned long long	ftohex(long double f, unsigned bits, unsigned eBits)
 		shift--;
 	}
 	fNorm = fNorm - 1.0;
-	significand = fNorm * ((1LL << signBits) + 0.5f);
-	exp = shift + ((1 << (eBits- 1)) - 1);
-	return (exp << (bits-eBits-1)) | significand;
+	significand = (unsigned long long)(fNorm * ((1LL << signBits) + 0.5f));
+	*e = shift;
+	return (significand);
 }
 
-char 				*get_exponent(char *exp, int sign, t_conversion *c)
+static char 		*get_exponent(int e, t_conversion *c)
 {
 	char	*result;
 	char	*postfix;
-	int		e;
 
 	postfix = (c->type == 'x') ? "p" : "P";
-	e = ((int)ft_atoi_base(exp, 16));
-	if (exp[0] != '0' && sign)
-		e -= 4095;
-	if (exp[0] != '0')
-		e -= 1023;
 	result = ft_itoa_base(e, 10);
 	if (result[0] != '-')
 		result = ft_strjoin_free("+", result, SECOND);
 	result = ft_strjoin_free(postfix, result, SECOND);
-	free(exp);
 	return (result);
 }
 
-char				*get_prefix(long double nbr, t_conversion *c, char *str)
+static char			*get_prefix(long double nbr, t_conversion *c, char *str)
 {
 	char	*prefix;
 
@@ -64,28 +55,15 @@ char				*get_prefix(long double nbr, t_conversion *c, char *str)
 	return (prefix);
 }
 
-char				*hextoa(char *str, int sign, t_conversion *c, long double nbr)
+static char			*add_precision(char *str, t_conversion *c)
 {
-	char	*prefix;
-	char	*exp;
-	char	*tmp;
-	int 	len;
+	int		len;
 
-	tmp = str;
-	str = ft_strdup(str + HEX_PREF_SIZE);
-	str = round_cut(str);
-	prefix = get_prefix(nbr, c, str);
 	len = (int)ft_strlen(str);
 	if (c->precision > len)
 		str = strjoinchr(str, '0', c->precision - len, END);
 	else if (c->precision < len)
 		str = ft_strcut(str, c->precision);
-	exp = ft_strcut(tmp, HEX_PREF_SIZE);
-	str = ft_strjoin_free(prefix, str, SECOND);
-	exp = get_exponent(exp, sign, c);
-	str = ft_strjoin_free(str, exp, BOTH);
-	if (sign)
-		str = ft_strjoin_free("-", str, SECOND);
 	return (str);
 }
 
@@ -94,6 +72,7 @@ char				*handle_a(long double nbr, t_conversion *c)
 	unsigned long long	hex;
 	int					sign;
 	char 				*str;
+	int					e;
 
 	sign = 0;
 	c->type += ('x' - 'a');
@@ -106,7 +85,13 @@ char				*handle_a(long double nbr, t_conversion *c)
 		return (infin(nbr, c, sign));
 	if (nbr == 0.0)
 		c->precision = 0;
-	hex = ftohex(nbr, 64, 11);
-	str = utoa_base(hex, 16, c->type, 0);
-	return (hextoa(str, sign, c, nbr));
+	hex = ftohex(nbr, 64, 11, &e);
+	str = utoa_base(hex, 16, (char)c->type, 0);
+	str = round_cut(str);
+	str = add_precision(str, c);
+	str = ft_strjoin_free(get_prefix(nbr, c, str), str, SECOND);
+	str = ft_strjoin_free(str, get_exponent(e, c), BOTH);
+	if (sign)
+		str = ft_strjoin_free("-", str, SECOND);
+	return (str);
 }
