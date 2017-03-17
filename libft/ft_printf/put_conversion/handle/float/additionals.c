@@ -75,7 +75,7 @@ int		infinite(long double nbr, int t, char *copy, t_indecies *i)
 	return (0);
 }
 
-char	*infin(long double nbr, t_conversion *c, char *sign)
+char	*infin(long double nbr, t_conversion *c, int sign)
 {
 	char	*result;
 	char	*s;

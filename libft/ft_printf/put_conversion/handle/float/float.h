@@ -59,7 +59,7 @@ void			out(char **sp, const char *s, size_t l);
 void			pad(char **sp, char c, int w, int l);
 char			*fmt_unsigned(uintmax_t x, char *s);
 int				infinite(long double nbr, int t, char *copy, t_indecies *i);
-char			*infin(long double nbr, t_conversion *c, char *sign);
+char			*infin(long double nbr, t_conversion *c, int sign);
 void			parse_int(t_indecies *i, t_arrays *a);
 void			parse_fract(t_indecies *i, t_arrays *a, int t, int p);
 void			next_function(t_indecies *i, t_arrays *a, t_conversion *c);
