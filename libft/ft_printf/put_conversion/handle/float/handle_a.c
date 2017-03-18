@@ -46,7 +46,7 @@ static char			*get_prefix(unsigned long long n, t_conversion *c, char *s)
 	char	*prefix;
 
 	prefix = (n == 0) ? "0" : "1";
-	if (c->precision > 0)
+	if (c->precision && s[0])
 		prefix = ft_strjoin(prefix, ".");
 	if (c->type == 'x')
 		prefix = ft_strjoin("0x", prefix);
