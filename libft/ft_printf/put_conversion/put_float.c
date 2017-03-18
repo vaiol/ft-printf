@@ -35,6 +35,8 @@ void		put_float(t_conversion *conv, va_list valist)
 	else
 		str = handle_float(va_arg(valist, double), conv);
 	margin = (size_t)(conv->sign || str[0] == '-');
+	if (conv->type == 'a' || conv->type == 'A')
+		margin += 2;
 	if (conv->sign && str[0] != '-')
 		str = strjoinchr(str, conv->sign, 1, BEGIN);
 	conv->precision = -1;
