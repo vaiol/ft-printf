@@ -18,7 +18,6 @@
 # include <math.h>
 # include "../handle.h"
 
-# define HEX_PREF_SIZE 3
 # define MAX(a,b) ((a)>(b) ? (a) : (b))
 # define MIN(a,b) ((a)<(b) ? (a) : (b))
 # define CONCAT2(y) 0x1p ## y

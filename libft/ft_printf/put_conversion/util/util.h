@@ -30,5 +30,6 @@ char			*strjoinchr(char *str, char const chr, int count,
 char			*strjoinchr_begin(char *str, char const chr, int count,
 		size_t margin);
 char			*strclear(char *str);
+char			*zerocut(char *nbr);
 
 #endif

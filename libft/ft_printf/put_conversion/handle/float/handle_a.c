@@ -65,7 +65,7 @@ static char			*get_value(unsigned long long hex, t_conversion *c)
 	tmp = str;
 	str = ft_strdup(str + 3);
 	free(tmp);
-	str = zero_cut(str);
+	str = zerocut(str);
 	len = (int)ft_strlen(str);
 	str = ft_strjoin_free(get_prefix(hex, c, str), str, SECOND);
 	if (c->precision > len)
@@ -95,7 +95,6 @@ char				*handle_a(long double nbr, t_conversion *c)
 		c->precision = 0;
 	hex = ftohex(nbr, 64, 11, &e);
 	str = get_value(hex, c);
-//	str = ft_strjoin_free(get_prefix(nbr, c, str), str, SECOND);
 	str = ft_strjoin_free(str, get_exponent(e, c), BOTH);
 	if (sign)
 		str = ft_strjoin_free("-", str, SECOND);

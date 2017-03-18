@@ -27,6 +27,7 @@ PRINTF_SRCS = $(PRINTF)ft_printf.c \
             $(PUT)putstr.c $(PUT)ft_write.c $(PUT)printed_count.c\
 		   $(UTIL)strjoinchr_begin.c $(UTIL)strjoinchr.c $(UTIL)winttostr.c \
 		   $(UTIL)wstrtostr.c $(UTIL)utoa_base.c $(UTIL)strclear.c \
+		   $(UTIL)zerocut.c \
 		   $(CONV)unsigned.c $(CONV)signed.c $(CONV)conversion.c \
 		   $(CONV)float.c \
 		   $(CONV)string.c $(CONV)char.c $(CONV)memory.c $(CONV)printed.c \
