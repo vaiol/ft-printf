@@ -41,12 +41,12 @@ static char 		*get_exponent(int e, t_conversion *c)
 	return (result);
 }
 
-static char			*get_prefix(long double nbr, t_conversion *c, char *str)
+static char			*get_prefix(unsigned long long n, t_conversion *c, char *s)
 {
 	char	*prefix;
 
-	prefix = (nbr == 0.0) ? "0" : "1";
-	if (c->precision > 0 || str[0])
+	prefix = (n == 0) ? "0" : "1";
+	if (c->precision > 0)
 		prefix = ft_strjoin(prefix, ".");
 	if (c->type == 'x')
 		prefix = ft_strjoin("0x", prefix);
@@ -65,12 +65,13 @@ static char			*get_value(unsigned long long hex, t_conversion *c)
 	tmp = str;
 	str = ft_strdup(str + 3);
 	free(tmp);
-	str = round_cut(str);
+	str = zero_cut(str);
 	len = (int)ft_strlen(str);
+	str = ft_strjoin_free(get_prefix(hex, c, str), str, SECOND);
 	if (c->precision > len)
 		str = strjoinchr(str, '0', c->precision - len, END);
 	else if (c->precision < len)
-		str = ft_strcut(str, c->precision);
+		str = round_hex_cut(str, c);
 	return (str);
 }
 
@@ -94,7 +95,7 @@ char				*handle_a(long double nbr, t_conversion *c)
 		c->precision = 0;
 	hex = ftohex(nbr, 64, 11, &e);
 	str = get_value(hex, c);
-	str = ft_strjoin_free(get_prefix(nbr, c, str), str, SECOND);
+//	str = ft_strjoin_free(get_prefix(nbr, c, str), str, SECOND);
 	str = ft_strjoin_free(str, get_exponent(e, c), BOTH);
 	if (sign)
 		str = ft_strjoin_free("-", str, SECOND);

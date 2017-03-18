@@ -84,7 +84,7 @@ void			rounder(int p, int t, t_arrays *arrays, t_indecies *indecies)
 	}
 }
 
-char			*round_cut(char *nbr)
+char			*zero_cut(char *nbr)
 {
 	int	i;
 
@@ -96,4 +96,57 @@ char			*round_cut(char *nbr)
 		i--;
 	}
 	return (ft_strcut(nbr, i + 1));
+}
+
+static void		recur(char *nbr, int index, char *base)
+{
+	int	i;
+
+	if (index < 0)
+		return ;
+	if (nbr[index] == '.')
+	{
+		recur(nbr, index - 1, base);
+		return ;
+	}
+	if (nbr[index] ==  base[15])
+	{
+		nbr[index] = base[0];
+		recur(nbr, index - 1, base);
+		return ;
+	}
+	i = 0;
+	while (base[i])
+	{
+		if (nbr[index] == base[i])
+			break ;
+		i++;
+	}
+	nbr[index] = base[i + 1];
+}
+
+char			*round_hex_cut(char *nbr, t_conversion *c)
+{
+	int		i;
+	char	*bassement;
+	char	*result;
+
+	if (c->type == 'X')
+		bassement = "0123456789ABCDEF";
+	else
+		bassement = "0123456789abcdef";
+	if (c->precision)
+		c->precision += 4;
+	else c->precision += 3;
+	i = 0;
+	while (bassement[i])
+	{
+		if (nbr[c->precision] == bassement[i])
+			break ;
+		i++;
+	}
+	if (i >= 8)
+		recur(nbr, c->precision - 1, bassement);
+	result = ft_strcut(nbr, c->precision);
+	return (result);
 }
