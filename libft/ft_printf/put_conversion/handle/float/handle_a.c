@@ -46,7 +46,7 @@ static char			*get_prefix(unsigned long long n, t_conversion *c, char *s)
 	char	*prefix;
 
 	prefix = (n == 0) ? "0" : "1";
-	if (c->precision && s[0])
+	if (c->precision > 0 || (s[0] && c->precision))
 		prefix = ft_strjoin(prefix, ".");
 	if (c->type == 'x')
 		prefix = ft_strjoin("0x", prefix);
@@ -91,7 +91,7 @@ char				*handle_a(long double nbr, t_conversion *c)
 	}
 	if (nbr == INFINITY || nbr != nbr)
 		return (infin(nbr, c, sign));
-	if (nbr == 0.0)
+	if (nbr == 0.0 && c->precision < 0)
 		c->precision = 0;
 	hex = ftohex(nbr, 64, 11, &e);
 	str = get_value(hex, c);
