@@ -50,7 +50,6 @@ typedef struct	s_bufs
 }				t_bufs;
 
 void			rounder(int p, int t, t_arrays *a, t_indecies *i);
-char			*zero_cut(char *nbr);
 char			*round_hex_cut(char *nbr, t_conversion *c);
 void			handle_g(t_arrays *a, t_indecies *i, t_conversion *c);
 void			handle_f(t_arrays *a, int p, t_bufs *bufs, int hash);
