@@ -135,6 +135,8 @@ char			*round_hex_cut(char *nbr, t_conversion *c)
 		bassement = "0123456789ABCDEF";
 	else
 		bassement = "0123456789abcdef";
+	if (c->precision == -1)
+		return (nbr);
 	if (c->precision)
 		c->precision += 4;
 	else c->precision += 3;
