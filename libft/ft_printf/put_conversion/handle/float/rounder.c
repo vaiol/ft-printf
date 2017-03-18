@@ -111,6 +111,15 @@ static void		recur(char *nbr, int index, char *base)
 	nbr[index] = base[i + 1];
 }
 
+/*
+** with round:
+**
+** if (nbr[3] != '.')
+**     c->precision += 3;
+** else
+**     c->precision += 4;
+*/
+
 char			*round_hex_cut(char *nbr, t_conversion *c)
 {
 	int		i;
@@ -124,9 +133,8 @@ char			*round_hex_cut(char *nbr, t_conversion *c)
 	if (c->precision < 0)
 		return (nbr);
 	if (nbr[3] != '.')
-		c->precision += 3;
-	else
-		c->precision += 4;
+		return (ft_strcut(nbr, c->precision + 3));
+	c->precision += 4;
 	i = 0;
 	while (bassement[i])
 	{
