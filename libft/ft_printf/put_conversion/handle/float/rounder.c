@@ -134,7 +134,7 @@ char			*round_hex_cut(char *nbr, t_conversion *c)
 			break ;
 		i++;
 	}
-	if (i >= 8)
+	if (i > 8)
 		recur(nbr, c->precision - 1, bassement);
 	result = ft_strcut(nbr, c->precision);
 	return (result);
