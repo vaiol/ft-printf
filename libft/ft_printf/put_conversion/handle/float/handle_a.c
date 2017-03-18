@@ -67,12 +67,11 @@ static char			*get_value(unsigned long long hex, t_conversion *c)
 	free(tmp);
 	str = zero_cut(str);
 	len = (int)ft_strlen(str);
-
+	str = ft_strjoin_free(get_prefix(hex, c, str), str, SECOND);
 	if (c->precision > len)
 		str = strjoinchr(str, '0', c->precision - len, END);
 	else if (c->precision < len)
-		str = ft_strcut(str, c->precision);
-	str = ft_strjoin_free(get_prefix(hex, c, str), str, SECOND);
+		str = round_hex_cut(str, c);
 	return (str);
 }
 

@@ -135,12 +135,11 @@ char			*round_hex_cut(char *nbr, t_conversion *c)
 		bassement = "0123456789ABCDEF";
 	else
 		bassement = "0123456789abcdef";
-	if (c->precision == -1)
+	if (c->precision < 0)
 		return (nbr);
-	if (nbr[3] == '.')
-		c->precision += 4;
-	else
-		c->precision += 3;
+	if (nbr[3] != '.')
+		return (ft_strcut(nbr, c->precision + 3));
+	c->precision += 4;
 	i = 0;
 	while (bassement[i])
 	{
