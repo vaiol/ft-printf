@@ -12,7 +12,9 @@
 
 #include "put.h"
 
-void	ft_write(int fildes, const void *buf, size_t nbyte)
+void	ft_write(const void *buf, size_t nbyte)
 {
-	g_count += write(fildes, buf, nbyte);
+	if (g_fd == 0)
+		g_fd = 1;
+	g_count += write(g_fd, buf, nbyte);
 }

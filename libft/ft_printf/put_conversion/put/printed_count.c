@@ -18,5 +18,6 @@ int		printed_count(void)
 
 	count = (int)g_count;
 	g_count = 0;
+	g_fd = 1;
 	return (count);
 }

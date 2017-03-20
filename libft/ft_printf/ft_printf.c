@@ -27,13 +27,13 @@ int		ft_printf(const char *restrict format, ...)
 	{
 		if (format[i] == '%' || format[i] == '{')
 		{
-			ft_write(1, format + len, i - len);
+			ft_write(format + len, i - len);
 			len = parse(format, i + 1, valist);
 			i = len - 1;
 		}
 		i++;
 	}
-	ft_write(1, format + len, i - len);
+	ft_write(format + len, i - len);
 	va_end(valist);
 	return (printed_count());
 }

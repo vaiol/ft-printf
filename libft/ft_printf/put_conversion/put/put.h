@@ -16,9 +16,10 @@
 # include <unistd.h>
 
 size_t	g_count;
+int		g_fd;
 
 int		printed_count(void);
-void	ft_write(int fildes, const void *buf, size_t nbyte);
+void	ft_write(const void *buf, size_t nbyte);
 void	putstr(char const *s);
 
 #endif

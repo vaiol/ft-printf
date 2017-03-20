@@ -19,5 +19,5 @@ void	putstr(char const *s)
 	size = 0;
 	while (s[size])
 		size++;
-	ft_write(1, s, size);
+	ft_write(s, size);
 }

@@ -29,14 +29,14 @@ void		put_char(t_conversion *conv, va_list valist)
 	if (count > 0)
 	{
 		if (conv->padding == '-')
-			ft_write(1, &chr, (size_t)char_len--);
+			ft_write(&chr, (size_t)char_len--);
 		while (count--)
 		{
 			if (conv->padding == '0')
-				ft_write(1, "0", 1);
+				ft_write("0", 1);
 			else
-				ft_write(1, " ", 1);
+				ft_write(" ", 1);
 		}
 	}
-	ft_write(1, &chr, (size_t)char_len);
+	ft_write(&chr, (size_t)char_len);
 }
