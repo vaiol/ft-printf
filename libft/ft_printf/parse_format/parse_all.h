@@ -20,5 +20,6 @@ size_t	parse_type(const char *f, size_t i, t_conversion *form);
 size_t	parse_minwidth(const char *f, size_t i, t_conversion *form, va_list v);
 size_t	parse_precision(const char *f, size_t i, t_conversion *form, va_list v);
 size_t	parse_size(const char *f, size_t i, t_conversion *form);
+size_t	parse_brace(const char *f, size_t i, va_list valist);
 
 #endif

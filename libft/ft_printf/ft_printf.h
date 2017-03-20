@@ -44,7 +44,6 @@ typedef struct	s_conversion
 }				t_conversion;
 
 size_t			parse(const char *f, size_t i, va_list valist);
-size_t			parse_color(const char *f, size_t i);
 void			put_conversion(t_conversion *conv, va_list valist);
 
 #endif

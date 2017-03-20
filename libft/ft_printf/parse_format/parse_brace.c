@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_color.c                                      :+:      :+:    :+:   */
+/*   parse_brace.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astepano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "parse_all.h"
 
-char	**create_colors(void)
+static char		**create_colors(void)
 {
 	char	**array;
 
@@ -30,7 +30,7 @@ char	**create_colors(void)
 	return (array);
 }
 
-char	**create_escapes(void)
+static char		**create_escapes(void)
 {
 	char	**array;
 
@@ -48,7 +48,7 @@ char	**create_escapes(void)
 	return (array);
 }
 
-size_t	equal(char *str, char *format)
+static size_t	equal(char *str, char *format)
 {
 	size_t	i;
 
@@ -62,7 +62,19 @@ size_t	equal(char *str, char *format)
 	return (i);
 }
 
-size_t	parse_color(const char *f, size_t i)
+static size_t	setfd(char *format, size_t i, va_list valist)
+{
+	size_t	len;
+
+	if ((len = equal("fd}", format)))
+	{
+		g_fd = va_arg(valist, int);
+		return (i + len);
+	}
+	return (i);
+}
+
+size_t			parse_brace(const char *f, size_t i, va_list valist)
 {
 	char	*format;
 	char	**colors;
@@ -71,6 +83,8 @@ size_t	parse_color(const char *f, size_t i)
 	size_t	index;
 
 	format = (char *)f + i;
+	if ((len = setfd(format, i, valist)) != i)
+		return (len);
 	colors = create_colors();
 	escapes = create_escapes();
 	index = 0;
@@ -84,5 +98,7 @@ size_t	parse_color(const char *f, size_t i)
 		index++;
 	}
 	putstr("{");
+	free(colors);
+	free(escapes);
 	return (i);
 }
