@@ -46,8 +46,6 @@ OBJS = $(SRCS:.c=.o)
 
 INCLUDES = -I $(PRINTF)ft_printf.h
 
-LIB_NAME = libft.a
-PRINTF_NAME = printf.a
 NAME = libftprintf.a
 
 CFLAGS = -Wall -Wextra -Werror
@@ -57,12 +55,6 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	ar rc $(NAME) $(OBJS)
 
-$(PRINTF_NAME): $(PRINTF_OBJS)
-	ar rc $(PRINTF_NAME) $(PRINTF_OBJS)
-
-$(LIB_NAME): $(LIB_OBJS)
-	ar rc $(LIB_NAME) $(LIB_OBJS)
-
 .c.o:
 	$(CC) $(CFLAGS) $(INCLUDES) -c $<  -o $@
 
@@ -70,6 +62,6 @@ clean:
 	rm -f $(OBJS)
 
 fclean: clean
-	rm -f $(NAME) $(LIB_NAME) $(PRINTF_NAME)
+	rm -f $(NAME)
 
 re: fclean all
