@@ -29,7 +29,7 @@ PRINTF_SRCS = $(PRINTF)ft_printf.c \
 		   $(UTIL)wstrtostr.c $(UTIL)utoa_base.c $(UTIL)strclear.c \
 		   $(UTIL)zerocut.c \
 		   $(CONV)unsigned.c $(CONV)signed.c $(CONV)conversion.c \
-		   $(CONV)float.c unprintable.c \
+		   $(CONV)float.c $(CONV)unprintable.c \
 		   $(CONV)string.c $(CONV)char.c $(CONV)memory.c $(CONV)printed.c \
 		   $(PARSE)all.c  $(PARSE)flags.c $(PARSE)type.c $(PARSE)minwidth.c \
 		   $(PARSE)precision.c $(PARSE)size.c $(PARSE)color.c \
