@@ -83,6 +83,7 @@ char	*infin(long double nbr, t_conversion *c, int sign)
 	s = (c->type == 'x') ? ft_strdup("inf") : ft_strdup("INF");
 	if (nbr != nbr)
 		s = (c->type == 'x') ? ft_strdup("nan") : ft_strdup("NAN");
+	c->type -= ('x' - 'a');
 	if (sign)
 	{
 		result = ft_strjoin("-", s);

@@ -12,6 +12,15 @@
 
 #include "handle.h"
 
+static int	inan(t_conversion *conv, char *str)
+{
+	if (!ft_strcchr("aAfFgGeE", (char)conv->type))
+		return (1);
+	if (ft_isdigit(str[0]) || ft_isdigit(str[1]))
+		return (1);
+	return (0);
+}
+
 char		*handle_minwidth(t_conversion *conv, char *str, size_t margin)
 {
 	int	count;
@@ -21,7 +30,7 @@ char		*handle_minwidth(t_conversion *conv, char *str, size_t margin)
 	{
 		if (conv->padding == '-')
 			str = strjoinchr(str, ' ', count, END);
-		else if (conv->padding == '0' && conv->precision < 0)
+		else if (conv->padding == '0' && conv->precision < 0 && inan(conv, str))
 			str = strjoinchr_begin(str, '0', count, margin);
 		else
 			str = strjoinchr(str, ' ', count, BEGIN);

@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+       /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   put_float.c                                        :+:      :+:    :+:   */
@@ -23,6 +23,7 @@ static char	*handle_float(long double nbr, t_conversion *conv)
 	ftoa_conv(tmp, nbr, conv);
 	return (ft_strdup(tmp));
 }
+
 
 void		put_float(t_conversion *conv, va_list valist)
 {
