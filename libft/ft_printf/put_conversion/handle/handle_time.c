@@ -1,5 +1,16 @@
-#include "handle.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   handle_time.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: astepano <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/03/20 19:24:48 by astepano          #+#    #+#             */
+/*   Updated: 2017/03/20 19:25:14 by astepano         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "handle.h"
 
 static int		leapyear(int year)
 {
@@ -13,11 +24,11 @@ static int		yearsize(int year)
 	return (365);
 }
 
-static int 		**create_ytab(void)
+static int		**create_ytab(void)
 {
 	int	**ytab;
+	int	i;
 
-	int i;
 	ytab = (int **)malloc(sizeof(int *) * 2);
 	ytab[0] = (int *)malloc(sizeof(int) * 12);
 	ytab[0][0] = 31;
@@ -40,7 +51,7 @@ static int 		**create_ytab(void)
 	return (ytab);
 }
 
-t_time	*handle_time(const unsigned long long time)
+t_time			*handle_time(const unsigned long long time)
 {
 	t_time		*stime;
 	long long	dayclock;
@@ -61,10 +72,11 @@ t_time	*handle_time(const unsigned long long time)
 		stime->day -= ytab[leapyear(stime->year)][stime->month++];
 	stime->month = stime->month + 1;
 	stime->day++;
+	free(ytab);
 	return (stime);
 }
 
-char	*create_time(char *t1, int n2, char *delim)
+char			*create_time(char *t1, int n2, char *delim)
 {
 	char *result;
 	char *t2;

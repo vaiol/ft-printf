@@ -95,7 +95,7 @@ static void		recur(char *nbr, int index, char *base)
 		recur(nbr, index - 1, base);
 		return ;
 	}
-	if (nbr[index] ==  base[15])
+	if (nbr[index] == base[15])
 	{
 		nbr[index] = base[0];
 		recur(nbr, index - 1, base);

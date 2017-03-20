@@ -19,15 +19,15 @@
 typedef struct	s_time
 {
 	int			year;
-	int 		month;
-	int 		day;
-	int 		hour;
-	int 		min;
-	int 		sec;
+	int			month;
+	int			day;
+	int			hour;
+	int			min;
+	int			sec;
 }				t_time;
 
 char			*handle_minwidth(t_conversion *conv, char *str, size_t margin);
-char			*handle_precision(t_conversion *conv, char *str, int l, size_t margin);
+char			*handle_precision(t_conversion *c, char *str, int l, size_t m);
 t_time			*handle_time(const unsigned long long time);
 char			*handle_apostrophe(char *nbr);
 char			*handle_a(long double nbr, t_conversion *c);

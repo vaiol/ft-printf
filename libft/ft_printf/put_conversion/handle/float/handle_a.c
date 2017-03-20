@@ -1,34 +1,46 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   handle_a.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: astepano <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/03/20 19:38:42 by astepano          #+#    #+#             */
+/*   Updated: 2017/03/20 19:39:00 by astepano         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "float.h"
 
-unsigned  long long ftohex(long double f, unsigned bits, unsigned eBits, int *e)
+unsigned long long	ftohex(long double f, unsigned bits, unsigned eb, int *e)
 {
-	long double			fNorm;
+	long double			fnorm;
 	int					shift;
-	unsigned long long	significand;
-	unsigned			signBits;
+	unsigned long long	sgn;
+	unsigned			signbits;
 
-	signBits = bits - eBits - 1;
+	signbits = bits - eb - 1;
 	if (f == 0.0)
 		return ((unsigned)(*e = 0));
-	fNorm = f;
+	fnorm = f;
 	shift = 0;
-	while(fNorm >= 2.0)
+	while (fnorm >= 2.0)
 	{
-		fNorm /= 2.0;
+		fnorm /= 2.0;
 		shift++;
 	}
-	while(fNorm < 1.0)
+	while (fnorm < 1.0)
 	{
-		fNorm *= 2.0;
+		fnorm *= 2.0;
 		shift--;
 	}
-	fNorm = fNorm - 1.0;
-	significand = (unsigned long long)(fNorm * ((1LL << signBits) + 0.5f));
+	fnorm = fnorm - 1.0;
+	sgn = (unsigned long long)(fnorm * ((1LL << signbits) + 0.5f));
 	*e = shift;
-	return (((long long)(1 + ((1 << (eBits)) - 1)) << (bits-eBits-1)) | significand);
+	return (((long long)(1 + ((1 << (eb)) - 1)) << (bits - eb - 1)) | sgn);
 }
 
-static char 		*get_exponent(int e, t_conversion *c)
+static char			*get_exponent(int e, t_conversion *c)
 {
 	char	*result;
 	char	*postfix;
@@ -79,7 +91,7 @@ char				*handle_a(long double nbr, t_conversion *c)
 {
 	unsigned long long	hex;
 	int					sign;
-	char 				*str;
+	char				*str;
 	int					e;
 
 	sign = 0;

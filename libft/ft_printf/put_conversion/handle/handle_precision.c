@@ -12,12 +12,12 @@
 
 #include "handle.h"
 
-char	*handle_precision(t_conversion *conv, char *str, int l, size_t margin)
+char	*handle_precision(t_conversion *c, char *str, int l, size_t m)
 {
 	int	count;
 
-	count = conv->precision - ((int)ft_strlen(str) - l);
+	count = c->precision - ((int)ft_strlen(str) - l);
 	if (count > 0)
-		str = strjoinchr_begin(str, '0', count, margin);
+		str = strjoinchr_begin(str, '0', count, m);
 	return (str);
 }

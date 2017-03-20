@@ -1,4 +1,4 @@
-       /* ************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   put_float.c                                        :+:      :+:    :+:   */
@@ -24,12 +24,10 @@ static char	*handle_float(long double nbr, t_conversion *conv)
 	return (ft_strdup(tmp));
 }
 
-
 void		put_float(t_conversion *conv, va_list valist)
 {
 	size_t	margin;
 	char	*str;
-
 
 	if (conv->ldouble)
 		str = handle_float(va_arg(valist, long double), conv);
