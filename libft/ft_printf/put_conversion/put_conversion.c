@@ -70,6 +70,8 @@ void						put_conversion(t_conversion *conv, va_list valist)
 		put_printed(conv, valist);
 	else if (ft_strcchr("fFeEgGaA", (char)conv->type))
 		put_float(conv, valist);
+	else if (conv->type == 'r')
+		put_unprintable(conv, valist);
 	else
 		put_char(conv, valist);
 }

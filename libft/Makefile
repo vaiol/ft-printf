@@ -22,14 +22,14 @@ PARSE = $(PRINTF)parse_format/parse_
 
 LIB_SRCS = ft_itoa_base.c ft_strcchr.c	ft_strlen.c ft_isdigit.c ft_atoi.c \
 		   ft_strjoin.c ft_strdup.c ft_strcut.c ft_tolower.c ft_pow.c ft_abs.c \
-		   ft_memset.c ft_atoi_base.c ft_strjoin_free.c
+		   ft_memset.c ft_atoi_base.c ft_strjoin_free.c ft_isprint.c
 PRINTF_SRCS = $(PRINTF)ft_printf.c \
             $(PUT)putstr.c $(PUT)ft_write.c $(PUT)printed_count.c\
 		   $(UTIL)strjoinchr_begin.c $(UTIL)strjoinchr.c $(UTIL)winttostr.c \
 		   $(UTIL)wstrtostr.c $(UTIL)utoa_base.c $(UTIL)strclear.c \
 		   $(UTIL)zerocut.c \
 		   $(CONV)unsigned.c $(CONV)signed.c $(CONV)conversion.c \
-		   $(CONV)float.c \
+		   $(CONV)float.c unprintable.c \
 		   $(CONV)string.c $(CONV)char.c $(CONV)memory.c $(CONV)printed.c \
 		   $(PARSE)all.c  $(PARSE)flags.c $(PARSE)type.c $(PARSE)minwidth.c \
 		   $(PARSE)precision.c $(PARSE)size.c $(PARSE)color.c \
