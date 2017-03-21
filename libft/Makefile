@@ -22,7 +22,7 @@ PARSE = $(PRINTF)parse_format/parse_
 
 LIB_SRCS = ft_itoa_base.c ft_strcchr.c	ft_strlen.c ft_isdigit.c ft_atoi.c \
 		   ft_strjoin.c ft_strdup.c ft_strcut.c ft_tolower.c ft_pow.c ft_abs.c \
-		   ft_memset.c ft_strjoin_free.c ft_isprint.c
+		   ft_memset.c ft_strfjoin.c ft_isprint.c
 PRINTF_SRCS = $(PRINTF)ft_printf.c \
             $(PUT)putstr.c $(PUT)ft_write.c $(PUT)printed_count.c \
 		   $(UTIL)strjoinchr_begin.c $(UTIL)strjoinchr.c $(UTIL)winttostr.c \

@@ -48,8 +48,8 @@ static char			*get_exponent(int e, t_conversion *c)
 	postfix = (c->type == 'x') ? "p" : "P";
 	result = ft_itoa_base(e, 10);
 	if (result[0] != '-')
-		result = ft_strjoin_free("+", result, SECOND);
-	result = ft_strjoin_free(postfix, result, SECOND);
+		result = ft_strfjoin("+", result, SECOND);
+	result = ft_strfjoin(postfix, result, SECOND);
 	return (result);
 }
 
@@ -79,7 +79,7 @@ static char			*get_value(unsigned long long hex, t_conversion *c)
 	free(tmp);
 	str = zerocut(str);
 	len = (int)ft_strlen(str);
-	str = ft_strjoin_free(get_prefix(hex, c, str), str, SECOND);
+	str = ft_strfjoin(get_prefix(hex, c, str), str, SECOND);
 	if (c->precision > len)
 		str = strjoinchr(str, '0', c->precision - len, END);
 	else if (c->precision < len)
@@ -107,9 +107,9 @@ char				*handle_a(long double nbr, t_conversion *c)
 		c->precision = 0;
 	hex = ftohex(nbr, 64, 11, &e);
 	str = get_value(hex, c);
-	str = ft_strjoin_free(str, get_exponent(e, c), BOTH);
+	str = ft_strfjoin(str, get_exponent(e, c), BOTH);
 	if (sign)
-		str = ft_strjoin_free("-", str, SECOND);
+		str = ft_strfjoin("-", str, SECOND);
 	c->type -= ('x' - 'a');
 	return (str);
 }

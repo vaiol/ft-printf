@@ -37,7 +37,7 @@ char			*ft_itoa_base(long long value, int base);
 int				ft_strcchr(const char *str, char c);
 char			*ft_strcut(char *str, int max_len);
 double			ft_pow(double base, double ex);
-char			*ft_strjoin_free(char *s1, char *s2, t_free f);
+char			*ft_strfjoin(char *s1, char *s2, t_free f);
 int				ft_printf(const char *restrict format, ...);
 
 #endif

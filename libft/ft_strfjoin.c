@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin_free.c                                  :+:      :+:    :+:   */
+/*   ft_strfjoin.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astepano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/20 19:20:05 by astepano          #+#    #+#             */
-/*   Updated: 2017/03/20 19:20:13 by astepano         ###   ########.fr       */
+/*   Created: 2017/03/21 22:30:20 by astepano          #+#    #+#             */
+/*   Updated: 2017/03/21 22:30:22 by astepano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin_free(char *s1, char *s2, t_free f)
+char	*ft_strfjoin(char *s1, char *s2, t_free f)
 {
 	char	*str;
 	size_t	i;
